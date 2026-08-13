@@ -56,7 +56,9 @@ npm run eval:facts -- --url http://127.0.0.1:8080/
 
 The tests exercise the rendered PHP application, one category route, the Politico PDF
 and thumbnail, the visitor-controlled advocacy email, historical-contact safety, and
-self-contained presentation assets. They also bind every material present-day claim
+self-contained presentation assets. They verify that the archival well uses the lighter
+portfolio homepage surface color while the original CallNYC hero and footer retain their
+colors. They also bind every material present-day claim
 to the project Knowledge Wiki, require public evidence for public copy, keep the
 Council Connect absence finding dated and bounded, and prevent private graph material
 from becoming public evidence. The weighted launch rubric lives in

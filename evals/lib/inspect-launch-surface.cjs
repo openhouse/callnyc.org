@@ -41,6 +41,16 @@ function elementTextByTestId(html, testId) {
   return stripMarkup(match ? match[2] : '');
 }
 
+function cssDeclaration(stylesheet, selector, property) {
+  const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedProperty = property.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const rule = stylesheet.match(new RegExp(`${escapedSelector}\\s*\\{([^}]*)\\}`, 'i'));
+  if (!rule) return '';
+
+  const declaration = rule[1].match(new RegExp(`(?:^|;)\\s*${escapedProperty}\\s*:\\s*([^;}]*)`, 'i'));
+  return declaration ? declaration[1].replace(/!important/gi, '').trim().toLowerCase() : '';
+}
+
 async function fetchResource(url) {
   const response = await fetch(url, { redirect: 'follow' });
   const buffer = Buffer.from(await response.arrayBuffer());
@@ -57,6 +67,7 @@ async function inspectLaunchSurface(baseUrl) {
   const normalizedBase = new URL(baseUrl);
   const root = await fetchResource(normalizedBase);
   const html = root.text;
+  const launchStylesheet = await fetchResource(new URL('/css/launch.css', normalizedBase));
 
   const categoryHrefs = [...new Set(matches(html, /href=["'](\/[^"'#?]+\.html)["']/gi).map((match) => match[1]))];
   const firstCategory = categoryHrefs.length
@@ -128,6 +139,13 @@ async function inspectLaunchSurface(baseUrl) {
     },
     archiveText: elementTextById(html, 'archive-status'),
     archiveRouteCount: matches(html, /href=["'][^"']*\/archive(?:\/|["'])/gi).length,
+    palette: {
+      archiveBackground: cssDeclaration(launchStylesheet.text, '.archive-status', 'background'),
+      archiveText: cssDeclaration(launchStylesheet.text, '.archive-status', 'color'),
+      actionBackground: cssDeclaration(launchStylesheet.text, '.archive-status .restore-data-button', 'background-color'),
+      originalHeroBackground: cssDeclaration(launchStylesheet.text, '#index-banner', 'background-color'),
+      originalFooterBackground: cssDeclaration(launchStylesheet.text, '.page-footer', 'background-color'),
+    },
     telLinkCount: matches(html, /href=["']tel:/gi).length,
     currentContactLinkCount: matches(html, /href=["']https:\/\/council\.nyc\.gov\/districts\/?["']/gi).length,
     politico: {

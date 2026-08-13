@@ -37,7 +37,12 @@ function score(surface) {
       /historical/i.test(surface.archiveText) &&
       /daily 311/i.test(surface.archiveText) &&
       surface.archiveRouteCount === 0 &&
-      surface.firstCategory.hasArchiveFrame,
+      surface.firstCategory.hasArchiveFrame &&
+      surface.palette.archiveBackground === '#f3f6f8' &&
+      surface.palette.archiveText === '#0b5f81' &&
+      surface.palette.actionBackground === '#0b5f81' &&
+      surface.palette.originalHeroBackground === '#ec6c71' &&
+      surface.palette.originalFooterBackground === '#a21318',
     politico_evidence:
       /Website provides new information about council members' focus/i.test(surface.html) &&
       /Mar\. 14, 2016/i.test(surface.html) &&

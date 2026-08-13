@@ -35,6 +35,16 @@ test('the contemporary context is a compact frame on the original one-page surfa
   assert.equal(surface.firstCategory.hasArchiveFrame, true);
 });
 
+test('the archive well uses the portfolio home surface without recoloring CallNYC', () => {
+  assert.deepEqual(surface.palette, {
+    archiveBackground: '#f3f6f8',
+    archiveText: '#0b5f81',
+    actionBackground: '#0b5f81',
+    originalHeroBackground: '#ec6c71',
+    originalFooterBackground: '#a21318',
+  });
+});
+
 test('every material archival assertion is connected to the fact-check graph', () => {
   assert.deepEqual(
     [...surface.claimIds].sort(),
