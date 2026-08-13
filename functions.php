@@ -64,4 +64,50 @@ function is_archived(): bool {
 
   return $parsed;
 }
+
+function request_path(string $requestUri): string {
+  $path = parse_url($requestUri, PHP_URL_PATH);
+  if (!is_string($path) || $path === '') {
+    return '/';
+  }
+
+  return '/' . ltrim($path, '/');
+}
+
+function legacy_request_path(string $requestUri): string {
+  $path = request_path($requestUri);
+  $archivePrefix = '/archive/2016';
+
+  if ($path === $archivePrefix || $path === $archivePrefix . '/') {
+    return '/';
+  }
+
+  if (str_starts_with($path, $archivePrefix . '/')) {
+    return substr($path, strlen($archivePrefix));
+  }
+
+  return $path;
+}
+
+function artifact_url(string $path = '/'): string {
+  return request_path($path);
+}
+
+function advocacy_mailto_url(): string {
+  $subject = 'Restore constituent services data publishing';
+  $body = implode("\n\n", [
+    'To the NYC Council Data Team and NYC Open Data Team:',
+    'Please restore regular, privacy-protected publication of NYC Council constituent-services data from Council Connect through the NYC Open Data Portal.',
+    'A useful public release should be aggregate or de-identified, machine-readable, documented with a data dictionary and update schedule, and protect residents’ case details.',
+    'The historical dataset and the CallNYC archive show the civic value of this public record.',
+    'Thank you.',
+  ]);
+
+  return 'mailto:Data@council.nyc.gov,opendata@oti.nyc.gov?' . http_build_query(
+    ['subject' => $subject, 'body' => $body],
+    '',
+    '&',
+    PHP_QUERY_RFC3986
+  );
+}
 ?>

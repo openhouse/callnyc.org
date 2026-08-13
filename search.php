@@ -64,7 +64,7 @@ limitations under the License.
       foreach($lilCats as &$cat){
         ?>
           window.index.add({
-            href: '/<?php echo $cat['topCatSlug'];?>/<?php echo $cat['slug'];?>.html',
+            href: '<?php echo artifact_url('/' . $cat['topCatSlug'] . '/' . $cat['slug'] . '.html');?>',
             title: '<?php echo $cat['name'];?>',
             body: '<?php echo $cat['name'];?>'
           });
@@ -76,8 +76,8 @@ limitations under the License.
     ?>
 
 
-    // icon click
-    $('ul#nav-mobile li.search .search-wrapper i.material-icons').click(function() {
+    // Search icon click
+    $('ul#nav-mobile li.search .search-wrapper .archive-search-icon').click(function() {
       if ($('.search-results .focused').length) {
         $('.search-results .focused').first()[0].click();
       } else if ($('.search-results').children().length) {

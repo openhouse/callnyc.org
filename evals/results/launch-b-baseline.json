@@ -1,0 +1,14 @@
+{
+  "target": "http://localhost:5000/",
+  "score": 0,
+  "possible": 100,
+  "checks": [
+    {"id": "artifact-first", "weight": 30, "pass": false},
+    {"id": "single-surface", "weight": 10, "pass": false},
+    {"id": "preservation-truth", "weight": 15, "pass": false},
+    {"id": "politico-evidence", "weight": 15, "pass": false},
+    {"id": "prefilled-civic-action", "weight": 20, "pass": false},
+    {"id": "access-and-safety", "weight": 10, "pass": false}
+  ],
+  "note": "Recorded against commit 265aba36839e3b222ee0870111e6d8ee3561393c after adding the launch-B evaluator and before changing production behavior."
+}

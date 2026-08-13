@@ -1,0 +1,31 @@
+{
+  "target": "http://localhost:5000/",
+  "score": 100,
+  "possible": 100,
+  "checks": [
+    {"id": "artifact-first", "weight": 30, "pass": true},
+    {"id": "single-surface", "weight": 10, "pass": true},
+    {"id": "preservation-truth", "weight": 15, "pass": true},
+    {"id": "politico-evidence", "weight": 15, "pass": true},
+    {"id": "prefilled-civic-action", "weight": 20, "pass": true},
+    {"id": "access-and-safety", "weight": 10, "pass": true}
+  ],
+  "browserEvidence": {
+    "desktopViewport": "1440x1000",
+    "mobileViewport": "390x844",
+    "rankingCards": 49,
+    "categoryLinks": 518,
+    "mobileFirstCardTop": 703,
+    "horizontalOverflow": false,
+    "mobileMenuOpens": true,
+    "rootLevelNavigationWorks": true,
+    "consoleErrors": []
+  },
+  "contrast": {
+    "preservationHeading": 4.98,
+    "emailButton": 4.98,
+    "currentCouncilLink": 5.32,
+    "mobileMenuControl": 4.98
+  },
+  "note": "Recorded after the bounded Impeccable fix batch. The inherited coral artifact remains unchanged; contrast measurements apply only to the added preservation layer."
+}
