@@ -40,6 +40,24 @@ This script is idempotent and safe to re-run.
 Set `CALLNYC_ARCHIVED=1` to disable mutating endpoints like `getCSV.php`.
 This is enabled by default in `docker-compose.yml` and recommended for production.
 
+The public presentation is always labeled as a 2016 archive. It retains the original
+browse-and-rank interface, links member portraits to the coordinated 2017 Wayback
+snapshot, and directs present-day contact actions to the current NYC Council directory.
+
+## Launch evaluation
+
+With the Docker stack running at `http://localhost:8080`:
+
+```sh
+npm test
+npm run eval -- --url http://127.0.0.1:8080/
+```
+
+The tests exercise the rendered PHP application, one category route, the Politico PDF
+and thumbnail, the visitor-controlled advocacy email, historical-contact safety, and
+self-contained presentation assets. The weighted launch rubric lives in
+`evals/launch-2026-08-13-A.json`.
+
 ## Dokku deploy checklist
 
 - Create app and MySQL service:
