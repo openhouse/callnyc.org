@@ -16,20 +16,27 @@ limitations under the License.
 
 */
 
-  //phpinfo();
-  //exit();
+  include_once('functions.php');
 
+  $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
+  if (is_contemporary_home($requestUri)) {
+    include_once('components/contemporary-home.php');
+    if (getenv('CALLNYC_ROBOTS') === 'noindex') {
+      header('X-Robots-Tag: noindex, nofollow');
+    }
+    echo render_contemporary_home();
+    exit;
+  }
 
-  //var_dump(pathinfo($_SERVER['REQUEST_URI']));
-  // super simple router
-
-  $pathInfo = pathinfo($_SERVER['REQUEST_URI']);
+  // The preserved application keeps its original router behind an explicit
+  // archive boundary. Historical root paths continue to resolve for inbound
+  // links, while newly rendered links stay under /archive/2016/.
+  $pathInfo = pathinfo(legacy_request_path($requestUri));
   $active['category'] = substr($pathInfo["dirname"],1);
   $active['subCategory'] = $pathInfo["filename"];
 
   //var_dump($active);
 
-  include_once('functions.php');
   include_once('phonenumbers.php');
 
   function safe_trim($value, string $character_mask = " \t\n\r\0\x0B"): string {
@@ -112,7 +119,7 @@ limitations under the License.
         $memberCategory['parent']['name'] = safe_trim($row2["COMPLAINT_TYPE"], ' /');
         $memberCategory['parent']['COMPLAINT_TYPE'] = $row2["COMPLAINT_TYPE"];
         $memberCategory['parent']['slug'] = slugify($memberCategory['parent']['name']);
-        $memberCategory['url']="/".$memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html';
+        $memberCategory['url']=archive_url('/' . $memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html');
 
         if(
           $memberCategory['parent']['slug'] != 'n-a'
@@ -158,7 +165,7 @@ limitations under the License.
         $memberCategory['parent']['name'] = safe_trim($row2["COMPLAINT_TYPE"], ' /');
         $memberCategory['parent']['COMPLAINT_TYPE'] = $row2["COMPLAINT_TYPE"];
         $memberCategory['parent']['slug'] = slugify($memberCategory['parent']['name']);
-        $memberCategory['url']="/".$memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html';
+        $memberCategory['url']=archive_url('/' . $memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html');
 
         if(
           $memberCategory['parent']['slug'] != 'n-a'
@@ -185,24 +192,24 @@ limitations under the License.
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="msapplication-tap-highlight" content="no">
-    <meta name="description" content="#CallNYC <?php echo $activeSubCategoryName ?> Help: Free <?php echo ucwords($activeCategoryName) ?> Assistance from Top New York City Council Members">
+    <meta name="description" content="Archived and unofficial CallNYC reconstruction using historical New York City Council constituent-services data.">
     <?php
       if($frontPage){
         ?>
-        <title>Call NYC - Free Assistance from Top NYC Council Members</title>
-        <link rel="canonical" href="<?php echo $baseUrl; ?>" />
+        <title>CallNYC 2016 Archive — Historical Constituent Services Data</title>
+        <link rel="canonical" href="<?php echo $baseUrl . archive_url('/'); ?>" />
         <meta name="apple-mobile-web-app-title"
               content="Call NYC">
 
         <?php
       } else {
         ?>
-          <title><?php echo ucwords($activeSubCategoryName) ?> Assistance Top <?php echo count($members);?> - CallNYC.org | Free <?php echo ucwords($activeCategoryName) ?> Services from New York City Council</title>
-          <link rel="canonical" href="<?php echo $baseUrl; ?>/<?php echo $activeCategorySlug;?>/<?php echo $activeSubCategorySlug;?>.html" />
+          <title><?php echo ucwords($activeSubCategoryName) ?> — CallNYC 2016 Historical Archive</title>
+          <link rel="canonical" href="<?php echo $baseUrl . archive_url('/' . $activeCategorySlug . '/' . $activeSubCategorySlug . '.html'); ?>" />
           <meta name="apple-mobile-web-app-title"
                 content="<?php echo ucwords($activeSubCategoryName) ?>">
 
@@ -239,9 +246,7 @@ limitations under the License.
     <!-- CSS-->
     <!-- <link href="/css/prism.css" rel="stylesheet"> -->
     <link href="/css/ghpages-materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-
-    <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/archive-2026.css" type="text/css" rel="stylesheet" media="screen,projection">
 
     <style>
       ul#nav-mobile.side-nav.fixed {
@@ -282,13 +287,14 @@ limitations under the License.
   </head>
   <body>
     <header>
-      <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a></div>
+      <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only archive-menu-button" aria-label="Open archive navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
       <ul id="nav-mobile" class="side-nav fixed">
-        <li class="logo"><a id="logo-container" href="/" class="brand-logo">
-            <object id="front-page-logo" type="image/svg+xml" data="/call-nyc-logo.svg">Your browser does not support SVG</object></a></li>
+        <li class="logo"><a id="logo-container" href="<?php echo archive_url('/'); ?>" class="brand-logo">
+            <img id="front-page-logo" src="/call-nyc-logo.svg" alt="CallNYC"></a></li>
         <li class="search">
           <div class="search-wrapper card">
-            <input id="search"><i class="material-icons">search</i>
+            <label class="archive-search-label" for="search">Search the archive</label>
+            <input id="search" aria-label="Search the archive"><svg class="archive-search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.5 4.5"></path></svg>
             <div class="search-results"></div>
           </div>
         </li>
@@ -303,7 +309,7 @@ limitations under the License.
                       <ul>
                         <?php foreach($topCategory['subCategories'] as &$subCategory ){
                           ?>
-                            <li class="<?php if($subCategory['slug'] === $activeSubCategory['slug']){echo 'active';}?>"><a href="/<?php echo $topCategory['slug'];?>/<?php echo $subCategory['slug'];?>.html"><?php echo $subCategory['name'];?></a></li>
+                            <li class="<?php if($subCategory['slug'] === $activeSubCategory['slug']){echo 'active';}?>"><a href="<?php echo archive_url('/' . $topCategory['slug'] . '/' . $subCategory['slug'] . '.html'); ?>"><?php echo $subCategory['name'];?></a></li>
                           <?php
                         }?>
                       </ul>
@@ -317,13 +323,22 @@ limitations under the License.
       </ul>
     </header>
     <main>
-      <?php if ($isArchived) { ?>
-        <div class="archive-banner" style="background:#fff3cd; color:#664d03; border-bottom:1px solid #ffeeba;">
-          <div class="container" style="padding:8px 0;">
-            Archived project demo (snapshot). Not official, not current.
+      <section class="archive-boundary" aria-labelledby="archive-boundary-title">
+        <div class="archive-boundary-copy">
+          <h2 id="archive-boundary-title">Archived and unofficial</h2>
+          <p>This reconstruction preserves the 2016 CallNYC project and its historical CouncilStat data. NYC Council’s public constituent-services dataset is now historical. Council offices continue using Council Connect, but we found no current Council Connect export on NYC Open Data.</p>
+          <p class="archive-boundary-limits">No official explanation for that change has been located. These historical rankings are not a measure of current Council members or current service.</p>
+          <div class="archive-boundary-actions">
+            <a href="/#restore">Ask NYC to restore the public data</a>
+            <a href="https://council.nyc.gov/districts/">Get help from your current Council member</a>
+            <a href="https://portal.311.nyc.gov/">Visit NYC311</a>
           </div>
         </div>
-      <?php } ?>
+        <a class="archive-boundary-artifact" href="/data/media/Politico-Website-provides-new-information-about-council-members-focus.pdf" aria-label="Read the archived March 14, 2016 Politico New York article about CallNYC">
+          <img src="/data/media/politico-callnyc-2016-page-1.png" alt="Screenshot of the March 14, 2016 Politico New York article about CallNYC">
+          <span>As covered by Politico New York, March 14, 2016</span>
+        </a>
+      </section>
       <div class="section" id="index-banner">
   <div class="container">
     <div class="row">
@@ -341,12 +356,12 @@ limitations under the License.
           <?php
             if($frontPage) {
               ?>
-                New York City Council offers <b>free personal assistance</b> on hundreds of topics to New Yorkers like you every day.
-                <b>Find a New York City Council Member</b> who specializes in your issue and CALL NYC.
+                In 2016, CallNYC used published constituent-services records to explore the work of New York City Council district offices.
+                <b>This is a historical reconstruction.</b> It does not describe present-day services or current Council members.
               <?php
             } else {
               ?>
-                The <?php if(count($members) > 1){echo count($members);}?> most active New York City Council member<?php if(count($members)>1){echo 's';}?> providing free personal <b> <span style="text-transform: uppercase;"><?php echo $activeSubCategory['name'];?></span> assistance</b> to New Yorkers like you.
+                Historical <b><span style="text-transform: uppercase;"><?php echo $activeSubCategory['name'];?></span></b> records across the Council district offices represented in the 2016 CallNYC dataset.
               <?php
             }
           ?>
@@ -363,8 +378,8 @@ limitations under the License.
       <?php if ($frontPage) {
         ?>
           <p class="caption hide">
-             New York City Council offers <b>free personal assistance</b> on hundreds of topics to New Yorkers like you every day.
-             <b>Find a council member</b> who specializes in your issue and <i>CALL NYC</i>.
+             The 2016 CallNYC project explored historical constituent-services records across City Council district offices.
+             <b>This archive is not a guide to current services.</b>
           </p>
         <?php
       } else {
@@ -421,7 +436,7 @@ limitations under the License.
                       <b>Overall</b> </br>
                       <?php
                     }?>
-                    <?php echo number_format($member['annual']); ?> case<?php if ($member['annual'] > 1) {echo 's';}?> in the past year
+                    <?php echo number_format($member['annual']); ?> annualized historical case<?php if ($member['annual'] > 1) {echo 's';}?>
                   </p>
                   <p>
                     <b>Top Active Services</b> </br>
@@ -438,7 +453,7 @@ limitations under the License.
 
                 </div>
                 <div class="card-action">
-                  <a  href="tel:<?php echo $phoneNumbers[$member['district']];?>">Call <span style="float:right;"><?php echo $phoneNumbers[$member['district']];?></span></a>
+                  <a target="_blank" rel="noopener" href="https://council.nyc.gov/districts/">Find the current Council contact <span style="float:right;" aria-hidden="true">→</span></a>
                 </div>
               </div>
 
@@ -484,13 +499,11 @@ limitations under the License.
         <div class="row">
           <div class="col l8 s12">
             <h5 class="white-text">Powered by NYCC Constituent Services Data</h5>
-            <?php if ($isArchived) { ?>
-              <p class="grey-text text-lighten-4">Archived project demo (snapshot). Not official, not current.</p>
-            <?php } ?>
-            <p class="grey-text text-lighten-4">Every year tens of thousands of New Yorkers call their New York City Council members seeking assistance.  <a target="_blank" class="grey-text text-lighten-5" style="text-decoration: underline;" href="https://labs.council.nyc/districts/">All 51 City Council district offices</a> have staff dedicated to personally solving these often complex cases.</p>
-            <p class="grey-text text-lighten-4">In 2016 New York City Council began publishing anonymized daily records of this casework.  This is the data which powers CallNYC.org.  It gives an up-to-today picture of work happening in New York City Council district offices.</p>
-            <p class="grey-text text-lighten-4"> Not all City Council members opt to publish their service data and different members use the system in different ways.  As such CallNYC.org can only offer a picture of members who use the system.  Explore the Constituent Services Data yourself on the New York City Council's web site.</p>
-            <a class="btn waves-effect waves-light red lighten-3" target="_blank" href="https://labs.council.nyc/districts/data/">Explore the Data</a>
+            <p class="grey-text text-lighten-4">Archived and unofficial. This historical reconstruction is not a current ranking or a City service.</p>
+            <p class="grey-text text-lighten-4">Every year New Yorkers contact their City Council members seeking assistance. <a target="_blank" rel="noopener" class="grey-text text-lighten-5" style="text-decoration: underline;" href="https://council.nyc.gov/districts/">Find your current City Council district office</a> for official help.</p>
+            <p class="grey-text text-lighten-4">In 2016 New York City Council published anonymized records of this casework. Those historical records power this reconstruction. They do not describe present-day Council activity.</p>
+            <p class="grey-text text-lighten-4">Council offices used the historical system in different ways, so this archive was never a complete measure of constituent service. Explore the source dataset and its current historical notice on NYC Open Data.</p>
+            <a class="btn waves-effect waves-light red lighten-3" target="_blank" rel="noopener" href="https://data.cityofnewyork.us/d/b9km-gdpy">Explore the Historical Data</a>
 
           </div>
 
@@ -507,7 +520,6 @@ limitations under the License.
           <div class="col l4 s12" style="overflow: hidden;">
             <h5 class="white-text">Connect</h5>
 
-            <a href="https://twitter.com/CallNYCApp" class="twitter-follow-button" data-show-count="false" data-size="large" data-dnt="true">Follow @CallNYCApp</a>
             <a target="_blank" class="waves-effect waves-light btn" href="mailto:contact@callnyc.org" >
               Contact@CallNYC.org
             </a>
@@ -515,13 +527,12 @@ limitations under the License.
             <br/>
 
             <br/>
-            <div class="g-follow" data-annotation="bubble" data-height="24" data-href="https://plus.google.com/108619793845925798422" data-rel="publisher"></div>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-        2016 Open House Projects
+        2016 Open House Projects · preserved by Jamie Burkart
         <?php /*
         <!--<a class="grey-text text-lighten-4 right" href="https://github.com/Dogfalo/materialize/blob/master/LICENSE">MIT License</a>-->
         */ ?>
@@ -535,25 +546,7 @@ limitations under the License.
     <script src="/js/jquery.timeago.min.js"></script>
     <script src="/jade/lunr.min.js"></script>
     <script src="/search.php"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="/js/materialize.js"></script>
     <script src="/js/init.js"></script>
-    <!-- Twitter Button -->
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-
-    <!-- Google Analytics -->
-
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-74711372-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-
-
   </body>
 </html>

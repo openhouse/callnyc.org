@@ -1,0 +1,8 @@
+.DS_Store
+.env
+*.log
+
+# Local container and editor state
+.idea/
+.vscode/
+
