@@ -1,6 +1,11 @@
 <ifmodule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+  RewriteRule ^bin/jquery-2\.2\.1\.min\.js$ - [L,NC]
+  RewriteRule ^(?:docs|evals|tests|bin|\.impeccable)(?:/|$) - [R=404,L,NC]
+  RewriteRule ^\.git(?:/|$) - [R=404,L,NC]
+  RewriteRule ^(?:DESIGN|PRODUCT|README)\.md$ - [R=404,L,NC]
+  RewriteRule ^\.env(?:\..*)?$ - [R=404,L,NC]
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ index.php [QSA,L]

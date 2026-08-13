@@ -1,0 +1,120 @@
+{
+  "baseUrl": "http://127.0.0.1:18083",
+  "capturedAt": "2026-08-13T21:00:32.609Z",
+  "results": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": 200,
+      "title": "CallNYC 2016 Archive — Historical Constituent Services Data",
+      "emailHref": "mailto:District10@council.nyc.gov,opendatateam@oti.nyc.gov?subject=Restore%20constituent%20services%20data%20publishing&body=To%20the%20New%20York%20City%20Council%20and%20NYC%20Open%20Data%20team%2C%0A%0APlease%20restore%20regular%2C%20privacy-protected%20publication%20of%20constituent-services%20activity%20from%20Council%20Connect%20through%20the%20NYC%20Open%20Data%20Portal.%0A%0AThe%20public%20dataset%20is%20now%20historical%2C%20while%20Council%20offices%20continue%20to%20provide%20constituent%20services.%20A%20current%2C%20documented%2C%20machine-readable%20publication%20would%20help%20New%20Yorkers%20understand%20this%20work%20without%20exposing%20residents%27%20private%20case%20details.%0A%0APlease%20publish%20an%20update%20schedule%2C%20data%20dictionary%2C%20change%20log%2C%20and%20responsible%20point%20of%20contact.%0A%0AThank%20you.",
+      "logoLoaded": true,
+      "documentWidth": 1440,
+      "hasHorizontalOverflow": false,
+      "contrastChecks": [
+        {
+          "selector": ".preservation-header__button",
+          "minimum": 4.5,
+          "ratio": 2.99,
+          "pass": false
+        },
+        {
+          "selector": ".preservation-header h2",
+          "minimum": 3,
+          "ratio": 2.99,
+          "pass": false
+        },
+        {
+          "selector": "#index-banner h4",
+          "minimum": 3,
+          "ratio": 2.1,
+          "pass": false
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshotPath": "/private/tmp/callnyc-launch-2026-08-13-C/.impeccable/review/launch-c-round-1/desktop-viewport.png",
+      "navigationScreenshot": null,
+      "navigationError": null
+    },
+    {
+      "name": "tablet",
+      "viewport": {
+        "width": 820,
+        "height": 1180
+      },
+      "status": 200,
+      "title": "CallNYC 2016 Archive — Historical Constituent Services Data",
+      "emailHref": "mailto:District10@council.nyc.gov,opendatateam@oti.nyc.gov?subject=Restore%20constituent%20services%20data%20publishing&body=To%20the%20New%20York%20City%20Council%20and%20NYC%20Open%20Data%20team%2C%0A%0APlease%20restore%20regular%2C%20privacy-protected%20publication%20of%20constituent-services%20activity%20from%20Council%20Connect%20through%20the%20NYC%20Open%20Data%20Portal.%0A%0AThe%20public%20dataset%20is%20now%20historical%2C%20while%20Council%20offices%20continue%20to%20provide%20constituent%20services.%20A%20current%2C%20documented%2C%20machine-readable%20publication%20would%20help%20New%20Yorkers%20understand%20this%20work%20without%20exposing%20residents%27%20private%20case%20details.%0A%0APlease%20publish%20an%20update%20schedule%2C%20data%20dictionary%2C%20change%20log%2C%20and%20responsible%20point%20of%20contact.%0A%0AThank%20you.",
+      "logoLoaded": true,
+      "documentWidth": 820,
+      "hasHorizontalOverflow": false,
+      "contrastChecks": [
+        {
+          "selector": ".preservation-header__button",
+          "minimum": 4.5,
+          "ratio": 2.99,
+          "pass": false
+        },
+        {
+          "selector": ".preservation-header h2",
+          "minimum": 3,
+          "ratio": 2.99,
+          "pass": false
+        },
+        {
+          "selector": "#index-banner h4",
+          "minimum": 3,
+          "ratio": 2.1,
+          "pass": false
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshotPath": "/private/tmp/callnyc-launch-2026-08-13-C/.impeccable/review/launch-c-round-1/tablet-viewport.png",
+      "navigationScreenshot": null,
+      "navigationError": null
+    },
+    {
+      "name": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": 200,
+      "title": "CallNYC 2016 Archive — Historical Constituent Services Data",
+      "emailHref": "mailto:District10@council.nyc.gov,opendatateam@oti.nyc.gov?subject=Restore%20constituent%20services%20data%20publishing&body=To%20the%20New%20York%20City%20Council%20and%20NYC%20Open%20Data%20team%2C%0A%0APlease%20restore%20regular%2C%20privacy-protected%20publication%20of%20constituent-services%20activity%20from%20Council%20Connect%20through%20the%20NYC%20Open%20Data%20Portal.%0A%0AThe%20public%20dataset%20is%20now%20historical%2C%20while%20Council%20offices%20continue%20to%20provide%20constituent%20services.%20A%20current%2C%20documented%2C%20machine-readable%20publication%20would%20help%20New%20Yorkers%20understand%20this%20work%20without%20exposing%20residents%27%20private%20case%20details.%0A%0APlease%20publish%20an%20update%20schedule%2C%20data%20dictionary%2C%20change%20log%2C%20and%20responsible%20point%20of%20contact.%0A%0AThank%20you.",
+      "logoLoaded": true,
+      "documentWidth": 390,
+      "hasHorizontalOverflow": false,
+      "contrastChecks": [
+        {
+          "selector": ".preservation-header__button",
+          "minimum": 4.5,
+          "ratio": 2.99,
+          "pass": false
+        },
+        {
+          "selector": ".preservation-header h2",
+          "minimum": 3,
+          "ratio": 2.99,
+          "pass": false
+        },
+        {
+          "selector": "#index-banner h4",
+          "minimum": 3,
+          "ratio": 2.1,
+          "pass": false
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshotPath": "/private/tmp/callnyc-launch-2026-08-13-C/.impeccable/review/launch-c-round-1/mobile-viewport.png",
+      "navigationScreenshot": "/private/tmp/callnyc-launch-2026-08-13-C/.impeccable/review/launch-c-round-1/mobile-navigation.png",
+      "navigationError": null
+    }
+  ]
+}

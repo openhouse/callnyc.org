@@ -54,7 +54,7 @@ function base_url(): string {
 function is_archived(): bool {
   $value = getenv('CALLNYC_ARCHIVED');
   if ($value === false || $value === '') {
-    return false;
+    return true;
   }
 
   $parsed = filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
@@ -63,5 +63,33 @@ function is_archived(): bool {
   }
 
   return $parsed;
+}
+
+function request_path(string $requestUri): string {
+  $path = parse_url($requestUri, PHP_URL_PATH);
+  if (!is_string($path) || $path === '') {
+    return '/';
+  }
+
+  return '/' . ltrim($path, '/');
+}
+
+function legacy_request_path(string $requestUri): string {
+  $path = request_path($requestUri);
+  $archivePrefix = '/archive/2016';
+
+  if ($path === $archivePrefix || $path === $archivePrefix . '/') {
+    return '/';
+  }
+
+  if (str_starts_with($path, $archivePrefix . '/')) {
+    return substr($path, strlen($archivePrefix));
+  }
+
+  return $path;
+}
+
+function archive_url(string $path = '/'): string {
+  return request_path($path);
 }
 ?>
