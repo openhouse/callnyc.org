@@ -78,6 +78,19 @@ async function inspectLaunchSurface(baseUrl) {
   const html = root.text;
   const launchStylesheet = await fetchResource(new URL('/css/launch.css', normalizedBase));
   const healthResponse = await fetchResource(new URL('/health.php', normalizedBase));
+  const protectedPathResponses = await Promise.all([
+    '/.env',
+    '/.env.example',
+    '/.git/config',
+    '/.github/workflows/launch-evals.yml',
+    '/Dockerfile',
+    '/README.md',
+    '/docker-compose.yml',
+    '/docs/knowledge-bank/README.md',
+    '/evals/launch-2026-08-13-A.json',
+    '/package.json',
+    '/tests/launch-surface.test.cjs',
+  ].map(async (path) => [path, await fetchResource(new URL(path, normalizedBase))]));
 
   const categoryHrefs = [...new Set(matches(html, /href=["'](\/[^"'#?]+\.html)["']/gi).map((match) => match[1]))];
   const firstCategory = categoryHrefs.length
@@ -133,6 +146,9 @@ async function inspectLaunchSurface(baseUrl) {
       status: healthResponse.status,
       payload: parseJson(healthResponse.text),
     },
+    protectedPaths: Object.fromEntries(
+      protectedPathResponses.map(([path, response]) => [path, response.status]),
+    ),
     html,
     title: stripMarkup((html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1]),
     rootHeading: stripMarkup((html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || [])[1]),

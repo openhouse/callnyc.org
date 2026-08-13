@@ -67,7 +67,8 @@ function score(surface) {
       surface.health.status === 200 &&
       surface.health.payload?.status === 'ok' &&
       surface.health.payload?.service === 'callnyc' &&
-      Boolean(surface.health.payload?.revision),
+      Boolean(surface.health.payload?.revision) &&
+      Object.values(surface.protectedPaths).every((status) => status === 403),
   };
 }
 
