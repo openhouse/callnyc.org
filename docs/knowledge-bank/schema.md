@@ -19,4 +19,3 @@ Every edge has:
 - `target`: an existing node ID.
 
 The validator rejects duplicate node IDs and dangling source or target references. Semantic review remains a human gate.
-

@@ -12,7 +12,7 @@ The graph is not automatically a public website. Repository access, source acces
 - `sources/` records provenance, scope, and limits.
 - `decisions/` records consequential project choices and their reasons.
 - `corrections.md` is the correction path and change ledger.
-- `public-registry.json` is the explicit, human-reviewed public projection.
+- `public-registry.json` is a candidate public projection awaiting Jamie Burkart’s final launch approval.
 
 Validate the graph from the repository root:
 
@@ -27,4 +27,3 @@ php bin/validate-knowledge.php
 3. Keep historical descriptions inside their historical period.
 4. Protect constituent privacy. This project advocates aggregate or de-identified publication, never public case details.
 5. Add a node to the public registry only after reviewing accuracy, rights, sensitivity, attribution, and present-tense wording.
-

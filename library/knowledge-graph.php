@@ -32,7 +32,6 @@ function validate_knowledge_graph(array $graph): array {
 
   return $errors;
 }
-
 function load_knowledge_graph(string $path): array {
   $json = file_get_contents($path);
   if ($json === false) {
@@ -44,4 +43,3 @@ function load_knowledge_graph(string $path): array {
   }
   return $graph;
 }
-

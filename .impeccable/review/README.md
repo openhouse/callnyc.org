@@ -1,11 +1,10 @@
-# Visual review record
+# Launch C visual review record
 
 The screenshots in this directory are implementation-review evidence, not the current public deployment.
 
-- `round-1/` records the first valid desktop/mobile browser pass.
-- `round-2/` records the second and final screenshot pass after the single visual correction batch.
-- The second-pass mobile archive screenshot exposed an inherited, unnamed menu glyph overlapping the archive heading. The implementation then replaced it with a labeled 48×48 local SVG control.
-- The finish reviewer subsequently identified live historical `tel:` actions and a zoom-restricting archive viewport. The final implementation removes every historical phone action, routes cards to the official Council district lookup, permits browser zoom, and moves official help ahead of advocacy on narrow screens.
+- `launch-c-round-1/` records the first original-first desktop, tablet, mobile, and open-drawer browser pass.
+- `launch-c-round-2/` records the second and final screenshot pass after the contrast correction batch.
+- Each directory includes `report.json` with viewport size, HTTP status, mail action, logo loading, horizontal overflow, browser errors, and measured contrast.
+- `launch-c-final-check/report.json` records the no-screenshot browser verification after the second-round two-step coral adjustment. It is the final contrast result; round 2 intentionally preserves the preceding failure evidence.
 
-The final Impeccable re-review inspected the corrected live application and passed it with no blocking findings. No third screenshot round was added because the workflow caps visual capture at two rounds; the final browser interaction check verified the corrected DOM and behavior directly.
-
+The older open-letter mock and review artifacts were removed after launch C superseded that design direction.

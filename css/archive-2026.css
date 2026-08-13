@@ -1,19 +1,3 @@
-@font-face {
-  font-family: "Karla";
-  src: url("/font/karla/Karla-Variable.ttf") format("truetype");
-  font-weight: 200 800;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Oswald";
-  src: url("/font/oswald/Oswald-Variable.ttf") format("truetype");
-  font-weight: 200 700;
-  font-display: swap;
-}
-
-body { font-family: "Karla", "Avenir Next", Avenir, sans-serif; }
-
 #front-page-logo {
   width: auto;
   max-width: 172px;
@@ -59,39 +43,94 @@ a.button-collapse.top-nav.archive-menu-button {
 
 .archive-menu-button svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; }
 
-.archive-boundary {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 13rem;
-  gap: 2rem;
+.preservation-header {
+  padding: 1.25rem 0 .5rem;
+  color: #424242;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+}
+
+.preservation-header__row {
+  display: flex;
   align-items: center;
-  padding: 2.25rem max(7.5%, 1.5rem);
-  color: #1a232b;
-  border-bottom: 1px solid #aebcc4;
-  background: #f3f6f8;
+  margin-bottom: 0;
 }
 
-.archive-boundary h2 {
-  margin: 0 0 .65rem;
-  color: #1a232b;
-  font: 500 clamp(2.1rem, 4vw, 3.8rem)/1.02 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  letter-spacing: -.025em;
+.preservation-header__title {
+  margin: 0 0 .35rem;
+  color: #d32f2f;
+  font-size: 1.65rem;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
-.archive-boundary p { max-width: 70ch; margin: 0 0 .7rem; color: #34434e; line-height: 1.55; }
-.archive-boundary .archive-boundary-limits { color: #596873; font-size: .94rem; }
+.preservation-header p {
+  max-width: 66ch;
+  margin: 0;
+  font-size: .94rem;
+  line-height: 1.5;
+}
 
-.archive-boundary-actions { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1rem; }
-.archive-boundary-actions a { color: #23566b; font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
+.preservation-header__press {
+  display: block;
+  color: #616161;
+  font-size: .72rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  text-transform: uppercase;
+}
 
-.archive-boundary-artifact { color: #34434e; font: 500 .73rem/1.35 "Oswald", "Arial Narrow", sans-serif; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
-.archive-boundary-artifact img { display: block; width: 100%; height: 8.5rem; margin-bottom: .55rem; border: 1px solid #ccd3d7; object-fit: cover; object-position: top; box-shadow: 0 10px 24px rgba(34, 43, 54, .14); }
+.preservation-header__press img {
+  display: block;
+  width: 4.25rem;
+  height: 5.5rem;
+  margin: 0 auto .35rem;
+  border: 1px solid #e0e0e0;
+  object-fit: cover;
+  object-position: top;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .16);
+}
+
+.preservation-header__press span { display: block; text-align: center; }
+
+.preservation-header__action p { margin-bottom: .65rem; }
+
+.preservation-header__button {
+  width: 100%;
+  min-height: 44px;
+  line-height: 44px;
+  padding: 0 .75rem;
+  font-size: .76rem;
+  letter-spacing: .02em;
+}
+
+.preservation-header a:focus-visible,
+.archive-menu-button:focus-visible {
+  outline: 3px solid #ffcc4c;
+  outline-offset: 3px;
+}
+
+#index-banner { background-color: #ec6c71; }
+#index-banner h4 { color: #fff !important; }
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating),
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover,
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):focus { color: #bf360c; }
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):focus-visible {
+  outline: 3px solid #ffcc4c;
+  outline-offset: 3px;
+}
 
 @media only screen and (max-width: 992px) {
-  .archive-boundary { grid-template-columns: 1fr 10rem; padding: 5rem 5% 2.25rem; }
+  .preservation-header { padding-top: 4.75rem; }
 }
 
 @media only screen and (max-width: 600px) {
-  .archive-boundary { grid-template-columns: 1fr; }
-  .archive-boundary-artifact { display: grid; grid-template-columns: 7rem 1fr; gap: .75rem; align-items: center; }
-  .archive-boundary-artifact img { height: 5rem; margin: 0; }
+  .preservation-header { padding-bottom: 1rem; }
+  .preservation-header__row { align-items: flex-start; flex-wrap: wrap; }
+  .preservation-header__copy { margin-bottom: 1rem; }
+  .preservation-header__press img { margin-left: 0; }
+  .preservation-header__press span { text-align: left; }
+  .preservation-header__button { height: auto; min-height: 44px; line-height: 1.2; padding-top: .65rem; padding-bottom: .65rem; }
 }

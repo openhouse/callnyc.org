@@ -6,4 +6,3 @@
 - **Accessed:** 2026-08-13
 - **Use:** Establishes the current dataset title, time span, and historical status.
 - **Limit:** Metadata does not explain the publication transition.
-

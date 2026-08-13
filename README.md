@@ -1,13 +1,13 @@
 # CallNYC.org
 
-CallNYC.org is a contemporary steward of the reconstructed 2016 CallNYC project. The public root explains the present status of the constituent-services record, sends residents to current official help, and asks NYC Council and NYC OTI to restore a privacy-protected publication path from Council Connect to NYC Open Data. The historical application lives at `/archive/2016/`.
+CallNYC.org preserves the reconstructed 2016 CallNYC project as a working historical interface. The original experience remains at the public root, with one compact preservation header that identifies the archive, presents the contemporary Politico artifact, and asks NYC Council and NYC Open Data to restore a privacy-protected publication path from Council Connect.
 
 This repository preserves lineage from [`openhouse/CallNYC`](https://github.com/openhouse/CallNYC), branch `feature/archive-2026`. It is independent and unofficial.
 
 ## Public surfaces
 
-- `/` — contemporary archive-and-advocacy publication; no database dependency.
-- `/archive/2016/` — historical application backed by the reconstructed dataset.
+- `/` — historical CallNYC application with the compact preservation and advocacy header.
+- `/archive/2016/` — compatibility alias for older links; newly rendered links use the original root paths.
 - `/health.php` — database-independent deployment health and revision response.
 - `docs/knowledge-bank/` — project-internal typed knowledge wiki; not automatically public.
 
@@ -25,7 +25,7 @@ This repository preserves lineage from [`openhouse/CallNYC`](https://github.com/
    docker compose up --build
    ```
 
-3. Open [http://localhost:8080](http://localhost:8080). The archive is at [http://localhost:8080/archive/2016/](http://localhost:8080/archive/2016/).
+3. Open [http://localhost:8080](http://localhost:8080).
 
 The deterministic seed in `data/sample.csv` is loaded on first start. To seed it again:
 
@@ -38,11 +38,17 @@ docker compose exec web php bin/seed.php
 ```sh
 docker compose exec web php tests/run.php
 docker compose exec web php bin/validate-knowledge.php
+docker compose exec web php evals/launch-2026-08-13-C.php
+sh evals/http-public-boundary.sh http://localhost:8080
 ```
+
+With the bundled Playwright dependency available, `evals/capture-launch.cjs` verifies desktop, tablet, and mobile overflow, asset loading, browser errors, action height, and key contrast ratios. Its checked-in reports are implementation evidence rather than public routes.
 
 ## Archive safety
 
-Keep `CALLNYC_ARCHIVED=1`. It disables the historical `getCSV.php` mutation path. The successor intentionally does not attempt to ingest a current feed because none has been established.
+Archive mode defaults to on and disables the historical `getCSV.php` mutation path. Keep `CALLNYC_ARCHIVED=1` explicitly configured in deployment; only an intentional `CALLNYC_ARCHIVED=0` enables the inherited updater. The successor does not attempt to ingest a current feed because none has been established.
+
+Apache returns `404` for the project-internal knowledge bank, tests, evals, design evidence, and maintenance scripts. Repository access and public web access remain separate boundaries.
 
 ## Deployment
 

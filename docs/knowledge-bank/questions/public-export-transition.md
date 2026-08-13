@@ -9,4 +9,3 @@ The official dataset is historical, while an official Council posting describes 
 “Not found” is the finding. “Does not exist” is not yet established.
 
 Useful next evidence would include an official data-retirement notice, system transition documentation, an Open Data compliance plan, a data dictionary, or a statement from the responsible Council and OTI stewards.
-

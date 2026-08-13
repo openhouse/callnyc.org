@@ -17,20 +17,15 @@ limitations under the License.
 */
 
   include_once('functions.php');
+  include_once('components/preservation-header.php');
 
   $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
-  if (is_contemporary_home($requestUri)) {
-    include_once('components/contemporary-home.php');
-    if (getenv('CALLNYC_ROBOTS') === 'noindex') {
-      header('X-Robots-Tag: noindex, nofollow');
-    }
-    echo render_contemporary_home();
-    exit;
+  if (getenv('CALLNYC_ROBOTS') === 'noindex') {
+    header('X-Robots-Tag: noindex, nofollow');
   }
 
-  // The preserved application keeps its original router behind an explicit
-  // archive boundary. Historical root paths continue to resolve for inbound
-  // links, while newly rendered links stay under /archive/2016/.
+  // Preserve the original route structure at the public root. The temporary
+  // /archive/2016 prefix remains accepted for inbound links.
   $pathInfo = pathinfo(legacy_request_path($requestUri));
   $active['category'] = substr($pathInfo["dirname"],1);
   $active['subCategory'] = $pathInfo["filename"];
@@ -323,22 +318,7 @@ limitations under the License.
       </ul>
     </header>
     <main>
-      <section class="archive-boundary" aria-labelledby="archive-boundary-title">
-        <div class="archive-boundary-copy">
-          <h2 id="archive-boundary-title">Archived and unofficial</h2>
-          <p>This reconstruction preserves the 2016 CallNYC project and its historical CouncilStat data. NYC Council’s public constituent-services dataset is now historical. Council offices continue using Council Connect, but we found no current Council Connect export on NYC Open Data.</p>
-          <p class="archive-boundary-limits">No official explanation for that change has been located. These historical rankings are not a measure of current Council members or current service.</p>
-          <div class="archive-boundary-actions">
-            <a href="/#restore">Ask NYC to restore the public data</a>
-            <a href="https://council.nyc.gov/districts/">Get help from your current Council member</a>
-            <a href="https://portal.311.nyc.gov/">Visit NYC311</a>
-          </div>
-        </div>
-        <a class="archive-boundary-artifact" href="/data/media/Politico-Website-provides-new-information-about-council-members-focus.pdf" aria-label="Read the archived March 14, 2016 Politico New York article about CallNYC">
-          <img src="/data/media/politico-callnyc-2016-page-1.png" alt="Screenshot of the March 14, 2016 Politico New York article about CallNYC">
-          <span>As covered by Politico New York, March 14, 2016</span>
-        </a>
-      </section>
+      <?php echo render_preservation_header(); ?>
       <div class="section" id="index-banner">
   <div class="container">
     <div class="row">
@@ -405,15 +385,11 @@ limitations under the License.
             <div id="<?php echo trim($member['ACCOUNT'])?>" class="section scrollspy">
 
               <div class="card">
-                <a  target="_blank" href="https://web.archive.org/web/20170710152429/https://council.nyc.gov/district-<?php echo $member['district'];?>/">
+                <a target="_blank" rel="noopener" href="https://web.archive.org/web/20170710152429/https://council.nyc.gov/district-<?php echo $member['district'];?>/">
                   <div class="card-image">
-                    <img src="/data/photos/banner/<?php echo $member['district']?>.jpg">
+                    <img src="/data/photos/banner/<?php echo $member['district']?>.jpg" alt="Historical photograph of <?php echo htmlspecialchars($member['name'], ENT_QUOTES, 'UTF-8'); ?>">
                     <span class="card-title">
                       <?php if($n){
-                        /*
-                        <span style="float:left;font-size: 0.75em; padding-right: 0.5em;background-color: #ffcc4c;border-radius: 2.5em;width: 2.5em;height: 2.5em;m;text-align: center;text-shadow: none;color: black;font-weight: bold;padding-top: 0.5em;padding-right: 0;padding-left: 0;margin-right: 0.5em;margin-top: 0.75em;box-shadow: 0.25em 0px rgba(255,204,76,0.68), 0.5em 0px rgba(255,204,76,0.4624), 0.75em 0px rgba(255,204,76,0.314432);" class="">TOP</span>
-
-                        */
                         ?>
                         <span style="float:left;font-size: 0.75em; padding-right: 0.5em;background-color: white;border-radius: 2em;width: 2em;height: 2em;m;text-align: center;text-shadow: none;color: black;font-weight: bold;pa;padding-top: 0.25em;padding-right: 0;padding-left: 0;margin-right: 0.5em;margin-top: 1em;box-shadow: 0 0 0px 3px black;" class=""><?php if($n<10){echo '<span style="font-weight: 300;">#</span>';}?><?Php echo $n; ?></span>
 
@@ -497,13 +473,13 @@ limitations under the License.
     </main>    <footer class="page-footer">
       <div class="container">
         <div class="row">
-          <div class="col l8 s12">
+          <div class="col l12 s12">
             <h5 class="white-text">Powered by NYCC Constituent Services Data</h5>
             <p class="grey-text text-lighten-4">Archived and unofficial. This historical reconstruction is not a current ranking or a City service.</p>
             <p class="grey-text text-lighten-4">Every year New Yorkers contact their City Council members seeking assistance. <a target="_blank" rel="noopener" class="grey-text text-lighten-5" style="text-decoration: underline;" href="https://council.nyc.gov/districts/">Find your current City Council district office</a> for official help.</p>
             <p class="grey-text text-lighten-4">In 2016 New York City Council published anonymized records of this casework. Those historical records power this reconstruction. They do not describe present-day Council activity.</p>
-            <p class="grey-text text-lighten-4">Council offices used the historical system in different ways, so this archive was never a complete measure of constituent service. Explore the source dataset and its current historical notice on NYC Open Data.</p>
-            <a class="btn waves-effect waves-light red lighten-3" target="_blank" rel="noopener" href="https://data.cityofnewyork.us/d/b9km-gdpy">Explore the Historical Data</a>
+            <p class="grey-text text-lighten-4">Council offices used the historical system in different ways, so this archive was never a complete measure of constituent service. Explore NYC Open Data’s current historical catalog listing for constituent-services records.</p>
+            <a class="btn waves-effect waves-light red darken-3" target="_blank" rel="noopener" href="https://data.cityofnewyork.us/d/b9km-gdpy">Explore the Historical Data</a>
 
           </div>
 
@@ -517,17 +493,6 @@ limitations under the License.
           </div>
           -->
           */ ?>
-          <div class="col l4 s12" style="overflow: hidden;">
-            <h5 class="white-text">Connect</h5>
-
-            <a target="_blank" class="waves-effect waves-light btn" href="mailto:contact@callnyc.org" >
-              Contact@CallNYC.org
-            </a>
-            <br/>
-            <br/>
-
-            <br/>
-          </div>
         </div>
       </div>
       <div class="footer-copyright">

@@ -9,4 +9,3 @@
 ## Limit
 
 Historical status establishes that this public surface is not a live present-tense feed. It does not, by itself, explain when, why, or by whose decision the publication path changed.
-

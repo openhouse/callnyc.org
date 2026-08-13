@@ -22,4 +22,3 @@ if ($errors !== []) {
 }
 
 fwrite(STDOUT, "Knowledge graph is valid.\n");
-

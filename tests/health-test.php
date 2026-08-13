@@ -18,4 +18,3 @@ test_case('the deployment health endpoint is database-independent', function ():
 });
 
 finish_tests();
-

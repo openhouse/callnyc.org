@@ -16,7 +16,6 @@ function test_case(string $name, callable $test): void {
     fwrite(STDERR, "FAIL {$name}\n  {$error->getMessage()}\n");
   }
 }
-
 function assert_same(mixed $expected, mixed $actual): void {
   if ($expected !== $actual) {
     throw new RuntimeException(
@@ -43,4 +42,3 @@ function finish_tests(): never {
   fwrite(STDOUT, "\n{$count} tests, {$failures} failures\n");
   exit($failures === 0 ? 0 : 1);
 }
-

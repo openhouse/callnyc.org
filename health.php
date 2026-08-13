@@ -10,4 +10,3 @@ echo json_encode([
   'service' => 'callnyc',
   'revision' => getenv('GIT_REV') ?: 'unknown',
 ], JSON_UNESCAPED_SLASHES);
-
