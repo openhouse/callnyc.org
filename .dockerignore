@@ -1,0 +1,12 @@
+.git
+.github
+.env
+.env.*
+.impeccable
+docs
+evals
+tests
+README.md
+package.json
+Dockerfile
+docker-compose.yml

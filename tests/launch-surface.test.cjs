@@ -4,6 +4,7 @@ const { before } = require('node:test');
 const { inspectLaunchSurface } = require('../evals/lib/inspect-launch-surface.cjs');
 
 const baseUrl = process.env.CALLNYC_BASE_URL || 'http://127.0.0.1:8080/';
+const expectedRevision = process.env.CALLNYC_EXPECTED_REVISION || 'local';
 let surface;
 
 before(async () => {
@@ -113,6 +114,22 @@ test('the health endpoint identifies the staged revision without using the archi
   assert.deepEqual(surface.health.payload, {
     status: 'ok',
     service: 'callnyc',
-    revision: 'local',
+    revision: expectedRevision,
+  });
+});
+
+test('the public web root denies deployment artifacts and hidden paths', () => {
+  assert.deepEqual(surface.protectedPaths, {
+    '/.env': 403,
+    '/.env.example': 403,
+    '/.git/config': 403,
+    '/.github/workflows/launch-evals.yml': 403,
+    '/Dockerfile': 403,
+    '/README.md': 403,
+    '/docker-compose.yml': 403,
+    '/docs/knowledge-bank/README.md': 403,
+    '/evals/launch-2026-08-13-A.json': 403,
+    '/package.json': 403,
+    '/tests/launch-surface.test.cjs': 403,
   });
 });

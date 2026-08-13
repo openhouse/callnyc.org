@@ -1,7 +1,15 @@
-<ifmodule mod_rewrite.c>
+<IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # The repository root is also the historical PHP document root. Deny hidden
+  # paths and development/deployment material before the legacy front
+  # controller can turn a missing file into a successful archive page.
+  RewriteRule (^|/)\. - [F,L]
+  RewriteRule ^(?:Dockerfile|docker-compose\.ya?ml|package(?:-lock)?\.json|README\.md)$ - [F,L,NC]
+  RewriteRule ^(?:docs|evals|tests)(?:/|$) - [F,L,NC]
+
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ index.php [QSA,L]
-</ifmodule>
+</IfModule>

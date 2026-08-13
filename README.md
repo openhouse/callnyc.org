@@ -91,6 +91,10 @@ from becoming public evidence. The weighted launch rubric lives in
 `GET /health.php` returns the service and `GIT_REV`. Staging HTML responses emit
 `X-Robots-Tag: noindex, nofollow` when `CALLNYC_ROBOTS=noindex`.
 
+The public web root also returns `403 Forbidden` for hidden paths and for
+repository, evaluation, test, documentation, and deployment artifacts. The
+production image excludes those non-runtime files as a second boundary.
+
 ## Environment variables
 
 - `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`, `DB_PORT`
