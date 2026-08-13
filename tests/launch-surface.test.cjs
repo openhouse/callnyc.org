@@ -103,3 +103,16 @@ test('the long archival interface has a keyboard entrance and permits browser zo
   assert.ok(surface.categoryHeaderCount > 0);
   assert.equal(surface.focusableCategoryHeaderCount, surface.categoryHeaderCount);
 });
+
+test('the staging render tells crawlers not to index the candidate', () => {
+  assert.equal(surface.root.robots, 'noindex, nofollow');
+});
+
+test('the health endpoint identifies the staged revision without using the archive database', () => {
+  assert.equal(surface.health.status, 200);
+  assert.deepEqual(surface.health.payload, {
+    status: 'ok',
+    service: 'callnyc',
+    revision: 'local',
+  });
+});

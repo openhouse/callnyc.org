@@ -65,30 +65,36 @@ from becoming public evidence. The weighted launch rubric lives in
 `evals/launch-2026-08-13-A.json`; the fact ledger lives in
 `evals/facts/callnyc-copy-2026-08-13.json`.
 
-## Dokku deploy checklist
+## Dokku staging checklist
 
-- Create app and MySQL service:
+- Create the isolated staging app and MySQL service:
   ```sh
-  dokku apps:create callnyc
-  dokku mysql:create callnyc-db
-  dokku mysql:link callnyc-db callnyc
+  dokku apps:create callnyc-staging
+  dokku mysql:create callnyc-staging-db
+  dokku mysql:link callnyc-staging-db callnyc-staging
   ```
-- Ensure config vars (example):
+- Pin archive mode, crawler posture, and the exact deployed revision:
   ```sh
-  dokku config:set callnyc CALLNYC_ARCHIVED=1
+  dokku config:set callnyc-staging CALLNYC_ARCHIVED=1 CALLNYC_ROBOTS=noindex GIT_REV=<exact-commit>
   ```
 - Dokku ports:
   - Dockerfile listens on `5000` (Dokku default). If using a different port, set:
     ```sh
-    dokku proxy:ports-set callnyc http:80:5000
+    dokku proxy:ports-set callnyc-staging http:80:5000
     ```
-- Enable HTTPS (Let’s Encrypt plugin):
+- Set the staging hostname, then enable HTTPS only after DNS resolves to the Dokku host:
   ```sh
-  dokku letsencrypt:enable callnyc
+  dokku domains:set callnyc-staging staging.callnyc.org
+  dokku letsencrypt:enable callnyc-staging
   ```
+
+`GET /health.php` returns the service and `GIT_REV`. Staging HTML responses emit
+`X-Robots-Tag: noindex, nofollow` when `CALLNYC_ROBOTS=noindex`.
 
 ## Environment variables
 
 - `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`, `DB_PORT`
 - `DATABASE_URL` (optional, overrides DB_* when set)
 - `CALLNYC_ARCHIVED=1` to harden legacy write endpoints
+- `CALLNYC_ROBOTS=noindex` to prevent indexing of staging HTML
+- `GIT_REV` to identify the exact deployed commit at `/health.php`

@@ -58,9 +58,18 @@ async function fetchResource(url) {
     url: response.url,
     status: response.status,
     contentType: response.headers.get('content-type') || '',
+    robots: response.headers.get('x-robots-tag') || '',
     buffer,
     text: buffer.toString('utf8'),
   };
+}
+
+function parseJson(value) {
+  try {
+    return JSON.parse(value);
+  } catch (_error) {
+    return null;
+  }
 }
 
 async function inspectLaunchSurface(baseUrl) {
@@ -68,6 +77,7 @@ async function inspectLaunchSurface(baseUrl) {
   const root = await fetchResource(normalizedBase);
   const html = root.text;
   const launchStylesheet = await fetchResource(new URL('/css/launch.css', normalizedBase));
+  const healthResponse = await fetchResource(new URL('/health.php', normalizedBase));
 
   const categoryHrefs = [...new Set(matches(html, /href=["'](\/[^"'#?]+\.html)["']/gi).map((match) => match[1]))];
   const firstCategory = categoryHrefs.length
@@ -119,6 +129,10 @@ async function inspectLaunchSurface(baseUrl) {
 
   return {
     root,
+    health: {
+      status: healthResponse.status,
+      payload: parseJson(healthResponse.text),
+    },
     html,
     title: stripMarkup((html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1]),
     rootHeading: stripMarkup((html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i) || [])[1]),

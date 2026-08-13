@@ -62,7 +62,12 @@ function score(surface) {
     self_contained_resilience:
       surface.externalScriptHosts.length === 0 &&
       surface.logo.tagName.toLowerCase() === 'img' &&
-      surface.logo.status === 200,
+      surface.logo.status === 200 &&
+      surface.root.robots === 'noindex, nofollow' &&
+      surface.health.status === 200 &&
+      surface.health.payload?.status === 'ok' &&
+      surface.health.payload?.service === 'callnyc' &&
+      Boolean(surface.health.payload?.revision),
   };
 }
 

@@ -35,7 +35,7 @@
     {
       "id": "self_contained_resilience",
       "weight": 5,
-      "description": "Core presentation assets load locally without obsolete third-party scripts."
+      "description": "Core presentation assets load locally without obsolete third-party scripts, while staging is non-indexable and reports its exact revision independently of the archive database."
     }
   ]
 }

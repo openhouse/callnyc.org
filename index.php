@@ -31,6 +31,10 @@ limitations under the License.
 
   include_once('functions.php');
 
+  if (getenv('CALLNYC_ROBOTS') === 'noindex') {
+    header('X-Robots-Tag: noindex, nofollow');
+  }
+
   function safe_trim($value, string $character_mask = " \t\n\r\0\x0B"): string {
     return trim((string)($value ?? ''), $character_mask);
   }
