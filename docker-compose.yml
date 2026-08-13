@@ -10,6 +10,8 @@ services:
       DB_PASS: callnyc
       DB_PORT: 3306
       CALLNYC_ARCHIVED: "1"
+      CALLNYC_ROBOTS: "noindex"
+      GIT_REV: "local"
     volumes:
       - .:/var/www/html
     depends_on:

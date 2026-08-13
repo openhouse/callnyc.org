@@ -1,0 +1,9 @@
+{
+  "name": "callnyc-archived",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "eval": "node evals/score-launch.cjs",
+    "eval:facts": "node evals/audit-copy-facts.cjs"
+  }
+}

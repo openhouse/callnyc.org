@@ -149,6 +149,33 @@
     $('.datepicker').pickadate({selectYears: 20});
     $('select').not('.disabled').material_select();
 
+    // Keep the preserved category accordion operable and accurately announced.
+    var categoryHeaders = $('.collapsible-header');
+    function syncCategoryExpansion() {
+      categoryHeaders.each(function () {
+        $(this).attr('aria-expanded', $(this).hasClass('active') ? 'true' : 'false');
+      });
+    }
+    if (window.MutationObserver) {
+      categoryHeaders.each(function () {
+        var header = this;
+        new MutationObserver(function () {
+          $(header).attr('aria-expanded', $(header).hasClass('active') ? 'true' : 'false');
+        }).observe(header, { attributes: true, attributeFilter: ['class'] });
+      });
+    }
+    categoryHeaders.on('click', function (event) {
+      event.preventDefault();
+      setTimeout(syncCategoryExpansion, 50);
+    });
+    categoryHeaders.on('keydown', function (event) {
+      if (event.which === 32 || event.key === ' ' || event.code === 'Space') {
+        event.preventDefault();
+        $(this).trigger('click');
+      }
+    });
+    syncCategoryExpansion();
+
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space

@@ -1,0 +1,41 @@
+{
+  "name": "CallNYC launch 2026-08-13 A",
+  "description": "Behavioral evaluation of a faithful, safe, one-page presentation of the 2016 CallNYC civic-data artifact.",
+  "criteria": [
+    {
+      "id": "original_experience",
+      "weight": 25,
+      "description": "The original browse, rank, card, and category drill-down experience remains operable."
+    },
+    {
+      "id": "historical_safety",
+      "weight": 15,
+      "description": "Historical evidence remains available without initiating calls to obsolete phone numbers."
+    },
+    {
+      "id": "archive_clarity",
+      "weight": 15,
+      "description": "A compact frame distinguishes the 2016 artifact from present-day publication status on every existing route, using the portfolio home surface color without recoloring the preserved CallNYC frame."
+    },
+    {
+      "id": "politico_evidence",
+      "weight": 15,
+      "description": "A descriptive thumbnail opens the preserved Politico article and identifies its headline and date."
+    },
+    {
+      "id": "advocacy_action",
+      "weight": 15,
+      "description": "A visitor-controlled email asks the Council Data Team and NYC Open Data Team to restore privacy-protected publishing."
+    },
+    {
+      "id": "fact_integrity",
+      "weight": 10,
+      "description": "Every rendered present-day claim is linked to public evidence, while absence findings remain dated, bounded, and separate from private discovery material."
+    },
+    {
+      "id": "self_contained_resilience",
+      "weight": 5,
+      "description": "Core presentation assets load locally without obsolete third-party scripts, while staging is non-indexable and reports its exact revision independently of the archive database."
+    }
+  ]
+}
