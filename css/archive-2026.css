@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "Karla";
+  src: url("/font/karla/Karla-Variable.ttf") format("truetype");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("/font/oswald/Oswald-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+body { font-family: "Karla", "Avenir Next", Avenir, sans-serif; }
+
+#front-page-logo {
+  width: auto;
+  max-width: 172px;
+  height: 100%;
+  object-fit: contain;
+}
+
+.archive-search-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.archive-search-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #2f6f89;
+  stroke-width: 1.8;
+}
+
+a.button-collapse.top-nav.archive-menu-button {
+  top: 1rem;
+  right: 1rem;
+  left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  color: #1a232b;
+  border: 1px solid #aebcc4;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.archive-menu-button svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+.archive-boundary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 13rem;
+  gap: 2rem;
+  align-items: center;
+  padding: 2.25rem max(7.5%, 1.5rem);
+  color: #1a232b;
+  border-bottom: 1px solid #aebcc4;
+  background: #f3f6f8;
+}
+
+.archive-boundary h2 {
+  margin: 0 0 .65rem;
+  color: #1a232b;
+  font: 500 clamp(2.1rem, 4vw, 3.8rem)/1.02 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  letter-spacing: -.025em;
+}
+
+.archive-boundary p { max-width: 70ch; margin: 0 0 .7rem; color: #34434e; line-height: 1.55; }
+.archive-boundary .archive-boundary-limits { color: #596873; font-size: .94rem; }
+
+.archive-boundary-actions { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin-top: 1rem; }
+.archive-boundary-actions a { color: #23566b; font-weight: 700; text-decoration: underline; text-underline-offset: .2em; }
+
+.archive-boundary-artifact { color: #34434e; font: 500 .73rem/1.35 "Oswald", "Arial Narrow", sans-serif; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+.archive-boundary-artifact img { display: block; width: 100%; height: 8.5rem; margin-bottom: .55rem; border: 1px solid #ccd3d7; object-fit: cover; object-position: top; box-shadow: 0 10px 24px rgba(34, 43, 54, .14); }
+
+@media only screen and (max-width: 992px) {
+  .archive-boundary { grid-template-columns: 1fr 10rem; padding: 5rem 5% 2.25rem; }
+}
+
+@media only screen and (max-width: 600px) {
+  .archive-boundary { grid-template-columns: 1fr; }
+  .archive-boundary-artifact { display: grid; grid-template-columns: 7rem 1fr; gap: .75rem; align-items: center; }
+  .archive-boundary-artifact img { height: 5rem; margin: 0; }
+}

@@ -1,69 +1,57 @@
-# CallNYC (Archived Demo)
+# CallNYC.org
 
-## Local development (Docker Compose)
+CallNYC.org is a contemporary steward of the reconstructed 2016 CallNYC project. The public root explains the present status of the constituent-services record, sends residents to current official help, and asks NYC Council and NYC OTI to restore a privacy-protected publication path from Council Connect to NYC Open Data. The historical application lives at `/archive/2016/`.
 
-1. Copy env defaults (optional):
+This repository preserves lineage from [`openhouse/CallNYC`](https://github.com/openhouse/CallNYC), branch `feature/archive-2026`. It is independent and unofficial.
+
+## Public surfaces
+
+- `/` — contemporary archive-and-advocacy publication; no database dependency.
+- `/archive/2016/` — historical application backed by the reconstructed dataset.
+- `/health.php` — database-independent deployment health and revision response.
+- `docs/knowledge-bank/` — project-internal typed knowledge wiki; not automatically public.
+
+## Local development
+
+1. Copy the environment defaults:
+
    ```sh
    cp .env.example .env
    ```
-2. Build + start the stack:
+
+2. Build and start the application and archive database:
+
    ```sh
    docker compose up --build
    ```
-3. Seed data (only needed on first run; bootstrap runs this automatically if `cases` is missing):
-   ```sh
-   docker compose exec web php bin/seed.php
-   ```
-4. Open the app at: http://localhost:8080
 
-Docker Compose mounts the repo into the container so edits are reflected on refresh.
+3. Open [http://localhost:8080](http://localhost:8080). The archive is at [http://localhost:8080/archive/2016/](http://localhost:8080/archive/2016/).
 
-## Seed data (deterministic)
-
-The seed script builds the schema and loads `data/sample.csv`.
+The deterministic seed in `data/sample.csv` is loaded on first start. To seed it again:
 
 ```sh
 docker compose exec web php bin/seed.php
 ```
 
-This script is idempotent and safe to re-run.
+## Verification
 
-## Troubleshooting
+```sh
+docker compose exec web php tests/run.php
+docker compose exec web php bin/validate-knowledge.php
+```
 
-- If you see `Table 'callnyc.cases' doesn't exist`, seed the database:
-  ```sh
-  docker compose exec web php bin/seed.php
-  ```
+## Archive safety
 
-## Archive mode
+Keep `CALLNYC_ARCHIVED=1`. It disables the historical `getCSV.php` mutation path. The successor intentionally does not attempt to ingest a current feed because none has been established.
 
-Set `CALLNYC_ARCHIVED=1` to disable mutating endpoints like `getCSV.php`.
-This is enabled by default in `docker-compose.yml` and recommended for production.
+## Deployment
 
-## Dokku deploy checklist
-
-- Create app and MySQL service:
-  ```sh
-  dokku apps:create callnyc
-  dokku mysql:create callnyc-db
-  dokku mysql:link callnyc-db callnyc
-  ```
-- Ensure config vars (example):
-  ```sh
-  dokku config:set callnyc CALLNYC_ARCHIVED=1
-  ```
-- Dokku ports:
-  - Dockerfile listens on `5000` (Dokku default). If using a different port, set:
-    ```sh
-    dokku proxy:ports-set callnyc http:80:5000
-    ```
-- Enable HTTPS (Let’s Encrypt plugin):
-  ```sh
-  dokku letsencrypt:enable callnyc
-  ```
+The Docker image listens on port `5000` for Dokku. Staging and production commands, database wiring, no-index posture, health attestation, and cutover gates are documented in [`docs/deployment.md`](docs/deployment.md).
 
 ## Environment variables
 
 - `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS`, `DB_PORT`
-- `DATABASE_URL` (optional, overrides DB_* when set)
-- `CALLNYC_ARCHIVED=1` to harden legacy write endpoints
+- `DATABASE_URL` — optional; overrides the individual database settings.
+- `CALLNYC_ARCHIVED=1` — required for the historical read-only posture.
+- `CALLNYC_ROBOTS=noindex` — required on staging; omit for approved production.
+- `GIT_REV` — exact deployed Git commit, returned by `/health.php`.
