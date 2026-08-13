@@ -19,18 +19,13 @@ limitations under the License.
   include_once('functions.php');
 
   $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
-  if (is_contemporary_home($requestUri)) {
-    include_once('components/contemporary-home.php');
-    if (getenv('CALLNYC_ROBOTS') === 'noindex') {
-      header('X-Robots-Tag: noindex, nofollow');
-    }
-    echo render_contemporary_home();
-    exit;
+  $robotsNoindex = getenv('CALLNYC_ROBOTS') === 'noindex';
+  if ($robotsNoindex) {
+    header('X-Robots-Tag: noindex, nofollow');
   }
 
-  // The preserved application keeps its original router behind an explicit
-  // archive boundary. Historical root paths continue to resolve for inbound
-  // links, while newly rendered links stay under /archive/2016/.
+  // Both the original root paths and the preserved /archive/2016 aliases
+  // resolve through the same historical application.
   $pathInfo = pathinfo(legacy_request_path($requestUri));
   $active['category'] = substr($pathInfo["dirname"],1);
   $active['subCategory'] = $pathInfo["filename"];
@@ -119,7 +114,7 @@ limitations under the License.
         $memberCategory['parent']['name'] = safe_trim($row2["COMPLAINT_TYPE"], ' /');
         $memberCategory['parent']['COMPLAINT_TYPE'] = $row2["COMPLAINT_TYPE"];
         $memberCategory['parent']['slug'] = slugify($memberCategory['parent']['name']);
-        $memberCategory['url']=archive_url('/' . $memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html');
+        $memberCategory['url']=artifact_url('/' . $memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html');
 
         if(
           $memberCategory['parent']['slug'] != 'n-a'
@@ -165,7 +160,7 @@ limitations under the License.
         $memberCategory['parent']['name'] = safe_trim($row2["COMPLAINT_TYPE"], ' /');
         $memberCategory['parent']['COMPLAINT_TYPE'] = $row2["COMPLAINT_TYPE"];
         $memberCategory['parent']['slug'] = slugify($memberCategory['parent']['name']);
-        $memberCategory['url']=archive_url('/' . $memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html');
+        $memberCategory['url']=artifact_url('/' . $memberCategory['parent']['slug'].'/'.$memberCategory['slug'].'.html');
 
         if(
           $memberCategory['parent']['slug'] != 'n-a'
@@ -197,11 +192,12 @@ limitations under the License.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="description" content="Archived and unofficial CallNYC reconstruction using historical New York City Council constituent-services data.">
+    <?php if ($robotsNoindex) { ?><meta name="robots" content="noindex, nofollow"><?php } ?>
     <?php
       if($frontPage){
         ?>
-        <title>CallNYC 2016 Archive — Historical Constituent Services Data</title>
-        <link rel="canonical" href="<?php echo $baseUrl . archive_url('/'); ?>" />
+        <title>CallNYC — 2016 Constituent Services Explorer</title>
+        <link rel="canonical" href="<?php echo $baseUrl . artifact_url('/'); ?>" />
         <meta name="apple-mobile-web-app-title"
               content="Call NYC">
 
@@ -209,7 +205,7 @@ limitations under the License.
       } else {
         ?>
           <title><?php echo ucwords($activeSubCategoryName) ?> — CallNYC 2016 Historical Archive</title>
-          <link rel="canonical" href="<?php echo $baseUrl . archive_url('/' . $activeCategorySlug . '/' . $activeSubCategorySlug . '.html'); ?>" />
+          <link rel="canonical" href="<?php echo $baseUrl . artifact_url('/' . $activeCategorySlug . '/' . $activeSubCategorySlug . '.html'); ?>" />
           <meta name="apple-mobile-web-app-title"
                 content="<?php echo ucwords($activeSubCategoryName) ?>">
 
@@ -286,10 +282,19 @@ limitations under the License.
     </style>
   </head>
   <body>
+    <!--
+    THESIS: The preserved CallNYC interaction is the argument; no explanatory landing page stands before it.
+    OWN-WORLD: The original 2016 Materialize palette, Roboto typography, fixed category rail, red banner, and ranking cards remain visually authoritative.
+    STORY: Use the artifact, recognize its historical status and Politico record, then ask the Council and OTI data teams to restore privacy-protected publishing.
+    FIRST VIEWPORT: A compact preservation notice and Politico thumbnail sit directly above the original red CallNYC banner and live category interface.
+    FORM: User-pinned original CallNYC surface; a narrow extension inside an established visual world, so no concept seed applies.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <a class="skip-link" href="#main-content">Skip to the CallNYC explorer</a>
     <header>
       <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only archive-menu-button" aria-label="Open archive navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></a></div>
       <ul id="nav-mobile" class="side-nav fixed">
-        <li class="logo"><a id="logo-container" href="<?php echo archive_url('/'); ?>" class="brand-logo">
+        <li class="logo"><a id="logo-container" href="<?php echo artifact_url('/'); ?>" class="brand-logo">
             <img id="front-page-logo" src="/call-nyc-logo.svg" alt="CallNYC"></a></li>
         <li class="search">
           <div class="search-wrapper card">
@@ -309,7 +314,7 @@ limitations under the License.
                       <ul>
                         <?php foreach($topCategory['subCategories'] as &$subCategory ){
                           ?>
-                            <li class="<?php if($subCategory['slug'] === $activeSubCategory['slug']){echo 'active';}?>"><a href="<?php echo archive_url('/' . $topCategory['slug'] . '/' . $subCategory['slug'] . '.html'); ?>"><?php echo $subCategory['name'];?></a></li>
+                            <li class="<?php if($subCategory['slug'] === $activeSubCategory['slug']){echo 'active';}?>"><a href="<?php echo artifact_url('/' . $topCategory['slug'] . '/' . $subCategory['slug'] . '.html'); ?>"><?php echo $subCategory['name'];?></a></li>
                           <?php
                         }?>
                       </ul>
@@ -322,23 +327,11 @@ limitations under the License.
         </li>
       </ul>
     </header>
-    <main>
-      <section class="archive-boundary" aria-labelledby="archive-boundary-title">
-        <div class="archive-boundary-copy">
-          <h2 id="archive-boundary-title">Archived and unofficial</h2>
-          <p>This reconstruction preserves the 2016 CallNYC project and its historical CouncilStat data. NYC Council’s public constituent-services dataset is now historical. Council offices continue using Council Connect, but we found no current Council Connect export on NYC Open Data.</p>
-          <p class="archive-boundary-limits">No official explanation for that change has been located. These historical rankings are not a measure of current Council members or current service.</p>
-          <div class="archive-boundary-actions">
-            <a href="/#restore">Ask NYC to restore the public data</a>
-            <a href="https://council.nyc.gov/districts/">Get help from your current Council member</a>
-            <a href="https://portal.311.nyc.gov/">Visit NYC311</a>
-          </div>
-        </div>
-        <a class="archive-boundary-artifact" href="/data/media/Politico-Website-provides-new-information-about-council-members-focus.pdf" aria-label="Read the archived March 14, 2016 Politico New York article about CallNYC">
-          <img src="/data/media/politico-callnyc-2016-page-1.png" alt="Screenshot of the March 14, 2016 Politico New York article about CallNYC">
-          <span>As covered by Politico New York, March 14, 2016</span>
-        </a>
-      </section>
+    <main id="main-content">
+      <?php
+        include_once('components/preservation-notice.php');
+        echo render_preservation_notice();
+      ?>
       <div class="section" id="index-banner">
   <div class="container">
     <div class="row">
@@ -540,9 +533,7 @@ limitations under the License.
       </div>
     </footer>
     <!--  Scripts-->
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script>if (!window.jQuery) { document.write('<script src="/bin/jquery-2.2.1.min.js"><\/script>'); }
-    </script>
+    <script src="/bin/jquery-2.2.1.min.js"></script>
     <script src="/js/jquery.timeago.min.js"></script>
     <script src="/jade/lunr.min.js"></script>
     <script src="/search.php"></script>

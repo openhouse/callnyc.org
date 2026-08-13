@@ -9,7 +9,7 @@ The application is packaged for Dokku through the repository `Dockerfile` and li
 | Staging candidate | `callnyc-staging` | `staging.callnyc.org` | `noindex, nofollow` |
 | Public site | `callnyc` | `callnyc.org`, `www.callnyc.org` | indexable after approval |
 
-The historical application needs MySQL. The contemporary root and `/health.php` remain available without a request-time database query, but the container bootstrap expects its linked database so it can seed the deterministic archive when necessary.
+The artifact at `/` and its `/archive/2016/` compatibility alias need MySQL. `/health.php` remains database-independent, while the container bootstrap expects its linked database so it can seed the deterministic archive when necessary.
 
 ## One-time staging wiring
 
@@ -33,17 +33,18 @@ Record the candidate commit and verify:
 ```sh
 curl -fsS https://staging.callnyc.org/health.php
 curl -fsSI https://staging.callnyc.org/
-curl -fsS https://staging.callnyc.org/ | rg 'The public record stopped updating'
-curl -fsS https://staging.callnyc.org/archive/2016/ | rg 'Archived and unofficial'
+curl -fsS https://staging.callnyc.org/ | rg 'Archived and unofficial|Built in a 24-hour sprint'
+curl -fsS https://staging.callnyc.org/archive/2016/ | rg 'Call NYC|historical reconstruction'
+curl -fsS https://staging.callnyc.org/ | rg 'mailto:Data@council.nyc.gov,opendata@oti.nyc.gov'
 ```
 
 Required evidence:
 
 - `/health.php` reports `status: ok` and the exact `GIT_REV`.
 - The root emits `X-Robots-Tag: noindex, nofollow` on staging.
-- Root, archive, CSS, self-hosted fonts, SVG logo, Politico image, and archived PDF return successfully over HTTPS.
+- Root, compatibility alias, CSS, local JavaScript, SVG logo, Politico image, and archived PDF return successfully over HTTPS.
 - Desktop and mobile screenshots match the approved composition closely enough to preserve its hierarchy.
-- The archive database renders a representative category route.
+- The database-backed root and a representative root-level category route render the original navigation, banner, and ranking cards.
 - Mutating endpoints remain blocked by `CALLNYC_ARCHIVED=1`.
 
 ## Production cutover
@@ -54,8 +55,7 @@ Production change requires Jamie’s approval of the exact staged candidate and 
 2. Confirm a rollback target and database backup or reproducible seed path.
 3. Set `CALLNYC_ARCHIVED=1` and `GIT_REV=<approved-commit>` on the production app.
 4. Deploy the exact approved commit.
-5. Verify root, archive, health, assets, TLS, redirects, and indexing posture.
+5. Verify root, preserved alias, a representative category route, health, assets, TLS, redirects, and indexing posture.
 6. Remove `CALLNYC_ROBOTS=noindex` only after the production candidate is confirmed.
 
-This document prepares the successor to replace the old deployment. It does not claim that the production domain has already been switched.
-
+This document prepares the preserved successor to replace the old deployment. It does not claim that the production domain has already been switched.

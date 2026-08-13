@@ -4,52 +4,47 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/test-helper.php';
 
-$homepageComponent = __DIR__ . '/../components/contemporary-home.php';
-if (is_file($homepageComponent)) {
-  require_once $homepageComponent;
+$preservationComponent = __DIR__ . '/../components/preservation-notice.php';
+if (is_file($preservationComponent)) {
+  require_once $preservationComponent;
 }
 
-test_case('the contemporary homepage gives visitors a truthful front door', function (): void {
+test_case('the preservation notice lets the original artifact lead', function (): void {
   assert_true(
-    function_exists('render_contemporary_home'),
-    'Expected render_contemporary_home() to render the new public front door'
+    function_exists('render_preservation_notice'),
+    'Expected render_preservation_notice() to provide the compact archival context'
   );
 
-  $html = render_contemporary_home();
-  assert_contains('The public record stopped updating.<br>The work did not.', $html);
-  assert_contains('href="/archive/2016/"', $html);
+  $html = render_preservation_notice();
+  assert_contains('Archived and unofficial', $html);
+  assert_contains('Built in a 24-hour sprint', $html);
   assert_contains('href="https://council.nyc.gov/districts/"', $html);
-  assert_contains('href="https://portal.311.nyc.gov/"', $html);
-  assert_true(!str_contains($html, 'up-to-today'), 'Contemporary copy must not describe historical data as current');
+  assert_true(!str_contains($html, 'href="/archive/2016/"'), 'The notice must not make visitors enter a second page to reach the artifact');
 });
 
-test_case('the advocacy request is sourced and bounded', function (): void {
-  $html = render_contemporary_home();
-  assert_contains('What the sources establish', $html);
-  assert_contains('No official explanation for that change has been located.', $html);
-  assert_contains('privacy-protected', $html);
-  assert_contains('https://data.cityofnewyork.us/d/b9km-gdpy', $html);
-  assert_contains('https://council.nyc.gov/amanda-farias/join-our-team-constituent-liaison/', $html);
-  assert_contains('https://opendata.cityofnewyork.us/overview/', $html);
+test_case('the click-to-email action opens a bounded draft to both responsible data teams', function (): void {
+  assert_true(
+    function_exists('advocacy_mailto_url'),
+    'Expected advocacy_mailto_url() to build the public action'
+  );
+
+  $url = advocacy_mailto_url();
+  assert_true(str_starts_with($url, 'mailto:Data@council.nyc.gov,opendata@oti.nyc.gov?'), 'Expected both verified institutional recipients');
+
+  $query = parse_url($url, PHP_URL_QUERY);
+  parse_str((string)$query, $fields);
+  assert_same('Restore constituent services data publishing', $fields['subject'] ?? null);
+  assert_contains('privacy-protected', $fields['body'] ?? '');
+  assert_contains('Council Connect', $fields['body'] ?? '');
+  assert_contains('NYC Open Data Portal', $fields['body'] ?? '');
 });
 
 test_case('the Politico evidence is visible, attributed, and linked', function (): void {
-  $html = render_contemporary_home();
+  $html = render_preservation_notice();
   assert_contains('/data/media/politico-callnyc-2016-page-1.png', $html);
   assert_contains('Screenshot of the March 14, 2016 Politico New York article', $html);
   assert_contains('/data/media/Politico-Website-provides-new-information-about-council-members-focus.pdf', $html);
-  assert_contains('Miranda Neubauer', $html);
-});
-
-test_case('the design direction contract survives in rendered markup', function (): void {
-  $html = render_contemporary_home();
-  assert_true(
-    preg_match('/<body[^>]*>\s*<!--\s*THESIS:/s', $html) === 1,
-    'Expected the design contract to be the first child of body'
-  );
-  assert_contains('FORM: Open public letter', $html);
-  assert_contains('seed a96de65f', $html);
+  assert_contains('As seen in Politico New York', $html);
 });
 
 finish_tests();
-

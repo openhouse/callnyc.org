@@ -1,130 +1,150 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-13T12:02:15-04:00",
-  "title": "Design System: CallNYC",
+  "generatedAt": "2026-08-13T17:12:32-04:00",
+  "title": "Design System: CallNYC Launch B",
   "extensions": {
     "colorMeta": {
-      "broadway-blue": { "role": "primary", "displayName": "Broadway Blue", "canonical": "#2f6f89", "tonalRamp": ["#0e2935", "#173d4d", "#205166", "#2f6f89", "#5b8da3", "#8fb2c0", "#c3d5dc", "#eef4f6"] },
-      "broadway-blue-dark": { "role": "primary", "displayName": "Deep Broadway Blue", "canonical": "#23566b", "tonalRamp": ["#0c2028", "#143541", "#1c4859", "#23566b", "#507c8d", "#83a5b2", "#bfd2d9", "#edf4f6"] },
-      "oil-white": { "role": "neutral", "displayName": "Oil White", "canonical": "#ffffff", "tonalRamp": ["#242424", "#474747", "#6b6b6b", "#919191", "#b8b8b8", "#d6d6d6", "#ededed", "#ffffff"] },
-      "oil-paper": { "role": "neutral", "displayName": "Oil Paper", "canonical": "#f3f6f8", "tonalRamp": ["#20282d", "#3f4a51", "#657178", "#8f9aa1", "#b9c2c7", "#d9dfe3", "#f3f6f8", "#ffffff"] },
-      "oil-ink": { "role": "neutral", "displayName": "Oil Ink", "canonical": "#1a232b", "tonalRamp": ["#10161b", "#1a232b", "#35414a", "#56636d", "#7e8991", "#abb3b9", "#d7dcdf", "#f3f5f6"] },
-      "muted-ink": { "role": "neutral", "displayName": "Muted Ink", "canonical": "#51606b", "tonalRamp": ["#182026", "#2a3841", "#40505b", "#51606b", "#74828b", "#9ca7ae", "#c8ced2", "#eff2f4"] },
-      "confirmation-green": { "role": "secondary", "displayName": "Confirmation Green", "canonical": "#4e6f61", "tonalRamp": ["#15251e", "#294035", "#3e5b4d", "#4e6f61", "#739183", "#9ab3a8", "#c6d5cf", "#eef4f1"] },
-      "yellow-ochre": { "role": "secondary", "displayName": "Yellow Ochre", "canonical": "#d1a23f", "tonalRamp": ["#3a2908", "#60450f", "#8a651d", "#b9872d", "#d1a23f", "#e2c477", "#f0dfad", "#fbf4df"] },
-      "ochre-text": { "role": "secondary", "displayName": "Ochre Text", "canonical": "#82520a", "tonalRamp": ["#291803", "#4c2e04", "#6b4207", "#82520a", "#a8762e", "#c99e62", "#e4cba1", "#f8f0df"] },
-      "civic-red": { "role": "tertiary", "displayName": "Civic Red", "canonical": "#c83b32", "tonalRamp": ["#3b0c09", "#651610", "#8f241d", "#c83b32", "#dc6d65", "#e9a09b", "#f5d0cd", "#fff1f0"] },
-      "divider-gray": { "role": "neutral", "displayName": "Divider Gray", "canonical": "#b9c3c9", "tonalRamp": ["#242b2f", "#465158", "#6a767d", "#8e9aa1", "#b9c3c9", "#d0d7db", "#e5e9eb", "#f7f9fa"] }
+      "callnyc-coral": { "role": "primary", "displayName": "CallNYC Coral", "canonical": "#EE6E73", "tonalRamp": ["#3A1113", "#641D21", "#8D2D31", "#B84449", "#EE6E73", "#F3989B", "#F8C1C3", "#FDEAEB"] },
+      "callnyc-coral-light": { "role": "primary", "displayName": "CallNYC Coral Light", "canonical": "#FFCDD2", "tonalRamp": ["#43171B", "#70282F", "#9C4149", "#C96870", "#E9959C", "#FFCDD2", "#FFE5E8", "#FFF7F8"] },
+      "advocacy-red": { "role": "primary", "displayName": "Advocacy Red", "canonical": "#D32F2F", "tonalRamp": ["#370909", "#601010", "#891B1B", "#B52626", "#D32F2F", "#E36A6A", "#F0AAAA", "#FBE6E6"] },
+      "advocacy-red-deep": { "role": "primary", "displayName": "Deep Advocacy Red", "canonical": "#C62828", "tonalRamp": ["#330707", "#5A0D0D", "#821717", "#A92020", "#C62828", "#DD6262", "#EDA3A3", "#FAE4E4"] },
+      "material-teal": { "role": "secondary", "displayName": "Material Teal", "canonical": "#26A69A", "tonalRamp": ["#052B28", "#0A4843", "#12665F", "#1B857B", "#26A69A", "#62C3BA", "#9DDBD6", "#E1F3F1"] },
+      "material-teal-hover": { "role": "secondary", "displayName": "Material Teal Hover", "canonical": "#2BBBAD", "tonalRamp": ["#06312D", "#0D514B", "#17746B", "#22978C", "#2BBBAD", "#69D0C6", "#A5E4DE", "#E4F7F5"] },
+      "official-teal": { "role": "secondary", "displayName": "Official Teal", "canonical": "#00796B", "tonalRamp": ["#001F1B", "#00372F", "#005047", "#00675B", "#00796B", "#3D9D92", "#86C8C1", "#DCF0ED"] },
+      "focus-yellow": { "role": "secondary", "displayName": "Focus Yellow", "canonical": "#FFCC4C", "tonalRamp": ["#3E2E00", "#695000", "#967400", "#C39B1C", "#FFCC4C", "#FFDC7D", "#FFEBB2", "#FFF8E2"] },
+      "card-action-orange": { "role": "secondary", "displayName": "Card Action Orange", "canonical": "#FFAB40", "tonalRamp": ["#3F2400", "#6E4000", "#9D5F05", "#CB801C", "#FFAB40", "#FFC478", "#FFDEB0", "#FFF3DF"] },
+      "archive-canvas": { "role": "neutral", "displayName": "Archive Canvas", "canonical": "#FCFCFC", "tonalRamp": ["#262626", "#4A4A4A", "#707070", "#969696", "#BCBCBC", "#DADADA", "#EEEEEE", "#FCFCFC"] },
+      "paper-white": { "role": "neutral", "displayName": "Paper White", "canonical": "#FFFFFF", "tonalRamp": ["#262626", "#4C4C4C", "#737373", "#999999", "#BFBFBF", "#DBDBDB", "#F0F0F0", "#FFFFFF"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "rgba(0, 0, 0, .87)", "tonalRamp": ["#000000", "#202020", "#444444", "#666666", "#8A8A8A", "#B0B0B0", "#D5D5D5", "#F2F2F2"] },
+      "body-ink": { "role": "neutral", "displayName": "Body Ink", "canonical": "rgba(0, 0, 0, .72)", "tonalRamp": ["#000000", "#292929", "#4A4A4A", "#6E6E6E", "#929292", "#B7B7B7", "#DADADA", "#F4F4F4"] },
+      "secondary-ink": { "role": "neutral", "displayName": "Secondary Ink", "canonical": "rgba(0, 0, 0, .60)", "tonalRamp": ["#000000", "#303030", "#525252", "#747474", "#969696", "#B9B9B9", "#DCDCDC", "#F5F5F5"] },
+      "divider": { "role": "neutral", "displayName": "Divider", "canonical": "#E0E0E0", "tonalRamp": ["#252525", "#494949", "#6D6D6D", "#929292", "#B4B4B4", "#CECECE", "#E0E0E0", "#F7F7F7"] },
+      "skip-ink": { "role": "neutral", "displayName": "Skip Ink", "canonical": "#212121", "tonalRamp": ["#121212", "#212121", "#414141", "#636363", "#888888", "#AEAEAE", "#D5D5D5", "#F2F2F2"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Civic Display", "purpose": "The governing sentence." },
-      "headline": { "displayName": "Argument Headline", "purpose": "Major argumentative turns." },
-      "title": { "displayName": "Docket Title", "purpose": "Evidence-docket findings." },
-      "deck": { "displayName": "Public Deck", "purpose": "The hero's bounded explanation." },
-      "body": { "displayName": "Open Body", "purpose": "Public explanation and source context." },
-      "label": { "displayName": "Record Label", "purpose": "Evidence state and compact archive-boundary labels." },
-      "small": { "displayName": "Utility Small", "purpose": "Emergency and supporting utility text." },
-      "caption": { "displayName": "Artifact Caption", "purpose": "Documentary attribution and limits." }
+      "display": { "displayName": "CallNYC Display", "purpose": "The coral banner title and active archive category." },
+      "headline": { "displayName": "Preservation Headline", "purpose": "The compact archived-and-unofficial notice title." },
+      "title": { "displayName": "Card Title", "purpose": "District member and district names over photography." },
+      "body": { "displayName": "Artifact Body", "purpose": "Historical data, card copy, and general interface text." },
+      "support": { "displayName": "Notice Support", "purpose": "Compact preservation explanation and request copy." },
+      "label": { "displayName": "Material Label", "purpose": "Navigation, service chips, and action controls." },
+      "caption": { "displayName": "Document Caption", "purpose": "The uppercase Politico artifact label." }
     },
     "shadows": [
-      { "name": "artifact-full", "value": "0 18px 40px rgba(34, 43, 54, .16)", "purpose": "The legible Politico page in the archive exhibit." },
-      { "name": "artifact-compact", "value": "0 10px 24px rgba(34, 43, 54, .14)", "purpose": "The smaller Politico preview in the archive boundary." }
+      { "name": "material-rest", "value": "0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12)", "purpose": "Cards, search, rail, and material controls at rest." },
+      { "name": "material-hover", "value": "0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15)", "purpose": "Material buttons on hover." },
+      { "name": "document-thumbnail", "value": "0 5px 12px rgba(0,0,0,.18)", "purpose": "The compact Politico page image." },
+      { "name": "photo-title", "value": "0 2px 1px rgba(0,0,0,.48), 0 2px 2px rgba(0,0,0,.40), 0 2px 5px rgba(0,0,0,.32), 0 2px 10px rgba(0,0,0,.24)", "purpose": "White member titles over district photographs." }
     ],
     "motion": [
-      { "name": "letter-arrives", "value": ".6s ease-out", "purpose": "A subtle 12px rise and fade for hero-letter children, only when reduced motion is not requested." }
+      { "name": "material-state", "value": ".2s ease-out", "purpose": "Standard button state transition." },
+      { "name": "material-depth", "value": "box-shadow .25s", "purpose": "Card and raised-surface depth transition." },
+      { "name": "card-action-color", "value": "color .3s ease", "purpose": "Historical card-action link transition." }
     ],
     "breakpoints": [
-      { "name": "stack", "value": "960px" },
-      { "name": "compact", "value": "680px" },
-      { "name": "archive-medium", "value": "992px" },
-      { "name": "archive-compact", "value": "600px" }
+      { "name": "small", "value": "600px" },
+      { "name": "rail", "value": "992px" },
+      { "name": "large-type", "value": "1200px" }
     ]
   },
   "components": [
     {
-      "name": "Primary Action",
+      "name": "Advocacy Primary",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "The strongest public action; it reverses on the dark request field.",
-      "html": "<a class=\"ds-action-primary\" href=\"#\">ASK NYC TO RESTORE THE DATA <span aria-hidden=\"true\">→</span></a>",
-      "css": ".ds-action-primary { display:inline-flex; align-items:center; justify-content:space-between; gap:1.4rem; min-height:3.4rem; padding:.75rem 1rem; border:1px solid #2f6f89; border-radius:4px; background:#2f6f89; color:#fff; font:750 1.0625rem/1.2 Karla,\"Avenir Next\",Avenir,sans-serif; text-decoration:none; } .ds-action-primary:hover { background:#23566b; color:#fff; } .ds-action-primary:focus-visible { outline:3px solid #d1a23f; outline-offset:4px; }"
+      "refersTo": "button-advocacy",
+      "description": "The single strongest restore-the-data action in the preservation notice.",
+      "html": "<a class=\"ds-advocacy-button\" href=\"#\">EMAIL NYC TO RESTORE THE DATA</a>",
+      "css": ".ds-advocacy-button { display:inline-block; height:40px; line-height:40px; padding:0 2rem; border:0; border-radius:2px; background:#D32F2F; color:#fff; font:500 13px/40px Roboto,sans-serif; letter-spacing:.5px; text-align:center; text-decoration:none; text-transform:uppercase; box-shadow:0 2px 5px rgba(0,0,0,.16),0 2px 10px rgba(0,0,0,.12); transition:box-shadow .2s ease-out; } .ds-advocacy-button:hover { box-shadow:0 5px 11px rgba(0,0,0,.18),0 4px 15px rgba(0,0,0,.15); } .ds-advocacy-button:focus-visible { outline:3px solid #FFCC4C; outline-offset:3px; }"
     },
     {
-      "name": "Secondary Action",
+      "name": "Standard Material Action",
       "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "A route that remains visible without competing with the main ask.",
-      "html": "<a class=\"ds-action-secondary\" href=\"#\">EXPLORE THE 2016 ARCHIVE <span aria-hidden=\"true\">→</span></a>",
-      "css": ".ds-action-secondary { display:inline-flex; align-items:center; justify-content:space-between; gap:1.4rem; min-height:3.4rem; padding:.75rem 1rem; border:1px solid #2f6f89; border-radius:4px; background:transparent; color:#23566b; font:750 1.0625rem/1.2 Karla,\"Avenir Next\",Avenir,sans-serif; text-decoration:none; } .ds-action-secondary:hover { color:#c83b32; } .ds-action-secondary:focus-visible { outline:3px solid #d1a23f; outline-offset:4px; }"
+      "refersTo": "button-standard",
+      "description": "The inherited teal CallNYC control for ordinary archive actions.",
+      "html": "<a class=\"ds-material-button\" href=\"#\">EXPLORE THE HISTORICAL DATA</a>",
+      "css": ".ds-material-button { display:inline-block; height:36px; line-height:36px; padding:0 2rem; border:0; border-radius:2px; background:#26A69A; color:#fff; font:500 13px/36px Roboto,sans-serif; letter-spacing:.5px; text-align:center; text-decoration:none; text-transform:uppercase; box-shadow:0 2px 5px rgba(0,0,0,.16),0 2px 10px rgba(0,0,0,.12); transition:background .2s ease-out,box-shadow .2s ease-out; } .ds-material-button:hover { background:#2BBBAD; box-shadow:0 5px 11px rgba(0,0,0,.18),0 4px 15px rgba(0,0,0,.15); } .ds-material-button:focus-visible { outline:3px solid #FFCC4C; outline-offset:3px; }"
     },
     {
-      "name": "Public Navigation",
+      "name": "Archive Search",
+      "kind": "input",
+      "refersTo": "archive-search",
+      "description": "The raised search field positioned below the logo in the fixed category rail.",
+      "html": "<label class=\"ds-search\"><span>Search the archive</span><input type=\"search\" aria-label=\"Search the archive\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"6.5\"></circle><path d=\"m16 16 4.5 4.5\"></path></svg></label>",
+      "css": ".ds-search { position:relative; display:block; width:216px; background:#fff; border-radius:2px; box-shadow:0 2px 5px rgba(0,0,0,.16),0 2px 10px rgba(0,0,0,.12); } .ds-search span { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); } .ds-search input { display:block; width:100%; height:45px; margin:0; padding:0 45px 0 15px; border:0; background:#fff; color:rgba(0,0,0,.87); font:300 16px/45px Roboto,sans-serif; } .ds-search svg { position:absolute; top:12px; right:12px; width:22px; height:22px; fill:none; stroke:#EE6E73; stroke-width:1.8; } .ds-search input:focus-visible { outline:3px solid #FFCC4C; outline-offset:3px; }"
+    },
+    {
+      "name": "Fixed Category Rail",
       "kind": "nav",
-      "refersTo": "navigation",
-      "description": "Compact public routes in a near-opaque sticky header.",
-      "html": "<nav class=\"ds-nav\"><a href=\"#\">The request</a><a href=\"#\">Evidence</a><a href=\"#\">2016 archive</a></nav>",
-      "css": ".ds-nav { display:flex; gap:clamp(1rem,3vw,2.5rem); align-items:center; border-bottom:1px solid #b9c3c9; background:rgba(255,255,255,.97); padding:1rem; font:650 1.0625rem/1.2 Karla,\"Avenir Next\",Avenir,sans-serif; } .ds-nav a { display:inline-flex; align-items:center; min-height:44px; color:#1a232b; text-decoration:none; } .ds-nav a:hover { color:#c83b32; } .ds-nav a:focus-visible { outline:3px solid #d1a23f; outline-offset:4px; }"
+      "refersTo": "archive-search",
+      "description": "The 240px desktop identity and category-navigation frame.",
+      "html": "<nav class=\"ds-rail\" aria-label=\"Archive categories\"><strong>CALL NYC</strong><a href=\"#\">Housing</a><a class=\"ds-rail-active\" href=\"#\">Tenant services</a><a href=\"#\">Transportation</a></nav>",
+      "css": ".ds-rail { display:flex; flex-direction:column; width:240px; min-height:360px; padding:32px 0; background:#fff; color:#444; font:400 13px/44px Roboto,sans-serif; box-shadow:0 2px 5px rgba(0,0,0,.16),0 2px 10px rgba(0,0,0,.12); } .ds-rail strong { margin:0 15px 48px; color:#EE6E73; font-size:20px; text-align:center; } .ds-rail a { height:44px; padding:0 30px; color:#444; text-decoration:none; } .ds-rail a:hover { background:rgba(0,0,0,.05); } .ds-rail .ds-rail-active { background:#EE6E73; color:#fff; } .ds-rail a:focus-visible { outline:3px solid #FFCC4C; outline-offset:-3px; }"
     },
     {
-      "name": "Confirmed Status",
+      "name": "Historical Ranking Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The primary database-backed result surface with rank, member, historical activity, and service links.",
+      "html": "<article class=\"ds-rank-card\"><div class=\"ds-rank-image\"><span class=\"ds-rank\">#1</span><h3>COUNCIL MEMBER<br><small>DISTRICT 1</small></h3></div><div class=\"ds-rank-content\"><p><strong>Overall</strong><br>1,240 annualized historical cases</p><span class=\"ds-chip\">Housing assistance</span></div><a class=\"ds-rank-action\" href=\"#\">FIND THE CURRENT COUNCIL CONTACT →</a></article>",
+      "css": ".ds-rank-card { width:320px; overflow:hidden; border-radius:2px; background:#fff; color:rgba(0,0,0,.87); font:400 1rem/1.5 Roboto,sans-serif; box-shadow:0 2px 5px rgba(0,0,0,.16),0 2px 10px rgba(0,0,0,.12); } .ds-rank-image { position:relative; min-height:190px; background:#6F6D6D; } .ds-rank-image h3 { position:absolute; left:20px; bottom:14px; margin:0; color:#fff; font:300 24px/1.1 Roboto,sans-serif; text-shadow:0 2px 1px rgba(0,0,0,.48),0 2px 5px rgba(0,0,0,.32),0 2px 10px rgba(0,0,0,.24); } .ds-rank-image small { font-size:75%; } .ds-rank { position:absolute; left:20px; top:16px; width:2em; height:2em; border-radius:2em; background:#fff; color:#000; font:700 12px/2em Roboto,sans-serif; text-align:center; box-shadow:0 0 0 3px #000; } .ds-rank-content { padding:20px; } .ds-chip { display:inline-block; height:32px; margin-top:8px; padding:0 12px; border-radius:16px; background:#E4E4E4; color:rgba(0,0,0,.60); font:500 13px/32px Roboto,sans-serif; } .ds-rank-action { display:block; padding:20px; border-top:1px solid rgba(160,160,160,.2); color:#FFAB40; font:500 13px/1.4 Roboto,sans-serif; text-decoration:none; } .ds-rank-action:hover { color:#FFD8A6; } .ds-rank-action:focus-visible { outline:3px solid #FFCC4C; outline-offset:-3px; }"
+    },
+    {
+      "name": "Service Chip",
       "kind": "chip",
-      "refersTo": "status-confirmed",
-      "description": "A compact textual evidence-state label, never a color-only signal.",
-      "html": "<span class=\"ds-status-confirmed\">CONFIRMED</span>",
-      "css": ".ds-status-confirmed { display:inline-block; width:fit-content; padding:.25rem .55rem; border:1px solid currentColor; border-radius:2px; color:#4e6f61; font:550 .78rem/1.3 Oswald,\"Arial Narrow\",sans-serif; letter-spacing:.1em; text-transform:uppercase; }"
+      "refersTo": "chip",
+      "description": "A compact historical service-category link inside ranking cards.",
+      "html": "<a class=\"ds-service-chip\" href=\"#\">Housing assistance</a>",
+      "css": ".ds-service-chip { display:inline-block; max-width:100%; height:32px; overflow:hidden; padding:0 12px; border-radius:16px; background:#E4E4E4; color:rgba(0,0,0,.60); font:500 13px/32px Roboto,sans-serif; text-decoration:none; white-space:nowrap; } .ds-service-chip:hover { color:#00796B; } .ds-service-chip:focus-visible { outline:3px solid #FFCC4C; outline-offset:3px; }"
     },
     {
-      "name": "Open Question Status",
-      "kind": "chip",
-      "refersTo": "status-open",
-      "description": "The accessible caution treatment for unresolved evidence.",
-      "html": "<span class=\"ds-status-open\">OPEN QUESTION</span>",
-      "css": ".ds-status-open { display:inline-block; width:fit-content; padding:.25rem .55rem; border:1px solid currentColor; border-radius:2px; color:#82520a; font:550 .78rem/1.3 Oswald,\"Arial Narrow\",sans-serif; letter-spacing:.1em; text-transform:uppercase; }"
-    },
-    {
-      "name": "Source Record",
+      "name": "Preservation Notice",
       "kind": "custom",
-      "refersTo": "status-confirmed",
-      "description": "A status-led docket row with one exact finding and direct source.",
-      "html": "<article class=\"ds-source\"><span class=\"ds-source-status\">CONFIRMED</span><div><h3>The public dataset is historical.</h3><p>One exact finding and its bounded explanation belong here.</p></div><a href=\"#\">View the source →</a></article>",
-      "css": ".ds-source { display:grid; grid-template-columns:9.5rem minmax(15rem,1fr) auto; gap:1.5rem; align-items:start; max-width:70rem; padding:1.5rem 0; border-top:2px solid #1a232b; border-bottom:1px solid #b9c3c9; color:#1a232b; font:400 1.0625rem/1.65 Karla,\"Avenir Next\",Avenir,sans-serif; } .ds-source-status { width:fit-content; padding:.25rem .55rem; border:1px solid currentColor; border-radius:2px; color:#4e6f61; font:550 .78rem/1.3 Oswald,\"Arial Narrow\",sans-serif; letter-spacing:.1em; } .ds-source h3 { margin:0 0 .3rem; font:700 1.45rem/1.25 \"Iowan Old Style\",\"Palatino Linotype\",Palatino,Baskerville,Georgia,serif; } .ds-source p { margin:0; color:#51606b; } .ds-source a { color:#23566b; font-weight:700; text-underline-offset:.2em; } .ds-source a:hover { color:#c83b32; } .ds-source a:focus-visible { outline:3px solid #d1a23f; outline-offset:4px; }"
+      "refersTo": "button-advocacy",
+      "description": "The compact present-day boundary that remains subordinate to the working explorer.",
+      "html": "<section class=\"ds-notice\"><div><h2>Archived and unofficial</h2><p><strong>Built from published 2016 records,</strong> CallNYC made district-office activity explorable. These rankings are historical.</p><p>Ask NYC to restore privacy-protected constituent-services data publishing.</p><a class=\"ds-notice-button\" href=\"#\">EMAIL NYC TO RESTORE THE DATA</a> <a class=\"ds-notice-link\" href=\"#\">Find your current Council member</a></div><aside><b>POLITICO NEW YORK</b><span>March 14, 2016</span></aside></section>",
+      "css": ".ds-notice { display:grid; grid-template-columns:minmax(0,1fr) 10.5rem; gap:1.5rem; align-items:center; max-width:900px; padding:1.4rem 1.5rem 1.5rem; border-bottom:1px solid #E0E0E0; background:#fff; color:rgba(0,0,0,.72); font:400 .96rem/1.5 Roboto,sans-serif; } .ds-notice h2 { margin:0 0 .45rem; color:#D32F2F; font:300 2rem/1.15 Roboto,sans-serif; } .ds-notice p { max-width:75ch; margin:0 0 .55rem; } .ds-notice-button { display:inline-block; height:40px; padding:0 1rem; border-radius:2px; background:#D32F2F; color:#fff; font:500 12px/40px Roboto,sans-serif; text-decoration:none; } .ds-notice-link { margin-left:.75rem; color:#00796B; font-weight:500; text-underline-offset:.18em; } .ds-notice aside { display:flex; min-height:6.4rem; flex-direction:column; justify-content:end; padding:.6rem; border:1px solid #E0E0E0; background:#FCFCFC; font:500 .78rem/1.35 Roboto,sans-serif; letter-spacing:.06em; box-shadow:0 5px 12px rgba(0,0,0,.18); } .ds-notice aside span { display:block; margin-top:.25rem; font-weight:400; } .ds-notice a:focus-visible { outline:3px solid #FFCC4C; outline-offset:3px; }"
     }
   ],
   "narrative": {
-    "northStar": "The Public Record Room",
-    "overview": "CallNYC is a calm, exacting civic record room: bright paper, dark ink, measured blue rules, ochre for caution, and historic CallNYC red held in a supporting role. It inherits the public-record visual language of jamieburk.art@develop while speaking as a civic project in its own right.\n\nThe system is editorial without impersonating a newspaper and institutional without imitating government. An asymmetric service-first opening gives the public letter the larger field while keeping official help immediately available. Large humanist headings make the central claim inhabitable; compact labels organize source state; rules, spacing, and real artifacts carry hierarchy.",
+    "northStar": "The Working Civic Artifact",
+    "overview": "CallNYC Launch B is the preserved 2016 interface acting as its own public argument. The database-backed explorer—not a replacement homepage—owns the visitor's experience: the original logo, coral banner, fixed category rail, district-office ranking cards, photographs, service chips, and Materialize motion and depth remain in command.\n\nThe present-day layer is deliberately narrow. A compact white preservation notice precedes the coral banner, using the same Roboto family, material controls, two-pixel corners, reds, teal link language, and modest elevation already present in the artifact. It names the archive boundary, links to current official help and the historical Politico record, and makes a privacy-protective restoration request without creating a second visual identity.\n\nThe previous blue, serif, public-record-room successor system and the Open Letter A/B/C comps are superseded and non-governing. They are process history only. New work must begin from the implemented original-Materialize artifact and preserve the compact-extension relationship established by Launch B.",
     "keyCharacteristics": [
-      "Light, high-contrast, and source-first.",
-      "Full-width frames and flat rules instead of ornamental containers.",
-      "One large civic sentence followed by present-day help, structured evidence, and bounded action.",
-      "A deliberate boundary between the contemporary successor system and the inherited 2016 application.",
-      "Historical CallNYC red supports lineage and inline-link hover; it is not the primary action color."
+      "Original 2016 Materialize language, with locally served Roboto and recognizable CallNYC coral.",
+      "A working civic-data interface before extended explanation.",
+      "A fixed white category rail, strong coral banner, elevated photo cards, and compact service chips.",
+      "Present-day stewardship expressed as one concise notice inside the incumbent world.",
+      "Archived, unofficial, historical, and privacy-protective status visible before rankings."
     ],
     "rules": [
-      { "name": "The Three Signals Rule", "body": "Blue asks, ochre cautions, and red remembers. Green confirms; none of these colors is interchangeable decoration.", "section": "colors" },
-      { "name": "The Archive Palette Boundary Rule", "body": "Materialize teal (#26a69a), Materialize red (#ee6e73), the inline yellow rank marker (#ffcc4c), and other colors embedded in the 2016 application are historical exceptions. Preserve them inside the archive; do not promote them into contemporary successor tokens.", "section": "colors" },
-      { "name": "The Landing Sentence Rule", "body": "Braided explanation earns one short structural sentence. Do not turn every paragraph into a pull quote.", "section": "typography" },
-      { "name": "The Self-Hosted Civic Type Rule", "body": "Karla carries public reading and controls; Oswald carries compact evidence and archive-boundary labels. Never replace either with a remotely hosted font or an icon font.", "section": "typography" },
-      { "name": "The Evidence Casts the Shadow Rule", "body": "Only a physical or documentary artifact receives elevation; ordinary content regions remain flat.", "section": "elevation" },
-      { "name": "The Two-Radius Rule", "body": "Use 4px for actionable controls and 2px for compact evidence-state labels. Pills, circles, and the varied corners embedded in the 2016 archive are historical exceptions, not successor primitives.", "section": "shapes" }
+      { "name": "The Artifact Is the Argument Rule", "body": "Never place a promotional, editorial, or explanatory landing page in front of the explorer.", "section": "overview" },
+      { "name": "The Narrow Extension Rule", "body": "Present-day additions borrow the artifact's palette, type, shapes, density, and interaction grammar; they do not establish a successor brand.", "section": "overview" },
+      { "name": "The Coral Owns Identity Rule", "body": "CallNYC coral governs the banner and archive identity; advocacy red intensifies only the small present-day request.", "section": "colors" },
+      { "name": "The Teal Means Route Rule", "body": "Teal carries ordinary material action and the official-help route. Do not replace it with the obsolete successor blue.", "section": "colors" },
+      { "name": "The One Roboto World Rule", "body": "Do not introduce serif display faces, Karla, Oswald, or remotely hosted typography into Launch B.", "section": "typography" },
+      { "name": "The Light Title Rule", "body": "Large titles use the 300 weight. Data labels, action copy, and navigation earn medium or bold weight through function, not decorative contrast.", "section": "typography" },
+      { "name": "The First-Viewport Continuity Rule", "body": "The preservation notice must stay compact enough that visitors see the original coral banner and understand that a working interface follows.", "section": "layout" },
+      { "name": "The 240px Rail Rule", "body": "Desktop extensions align with the fixed rail rather than centering themselves across the full browser canvas.", "section": "layout" },
+      { "name": "The Material Depth Rule", "body": "Depth communicates an interactive or physical surface. Preserve the inherited shadows; do not flatten the ranking cards into editorial rows or amplify the notice into a floating panel.", "section": "elevation" },
+      { "name": "The Two-Pixel Material Rule", "body": "New controls inside the artifact use the established two-pixel material corner.", "section": "shapes" },
+      { "name": "The Capsule Is Metadata Rule", "body": "Rounded capsules belong to service chips; do not turn advocacy actions, notices, or arbitrary labels into pills.", "section": "shapes" }
     ],
     "dos": [
-      "Do give the governing sentence room to carry the first viewport while keeping official help immediately available.",
-      "Do use self-hosted Karla and Oswald with their established local fallbacks.",
-      "Do use real evidence artifacts at legible scale with human-readable attribution.",
-      "Do distinguish confirmed findings, inference, and open questions visually and verbally.",
-      "Do keep help-now, archive, and advocacy routes keyboard reachable and findable within seconds.",
-      "Do preserve visible three-pixel ochre focus outlines with a four-pixel offset and honor reduced-motion preferences.",
-      "Do preserve inherited 2016 styling inside the explicit archive boundary."
+      "Do preserve the original CallNYC logo, coral banner, Roboto type, fixed rail, ranking cards, photographs, chips, and material depth.",
+      "Do keep the preservation notice immediately above the banner and visually subordinate to the explorer.",
+      "Do state archived, unofficial, and historical status before any ranking appears.",
+      "Do pair the restore-data request with explicit privacy protection and a route to the current official Council directory.",
+      "Do treat the Politico page as attributed historical evidence, not endorsement.",
+      "Do retain the 992px rail transition, 600px stacked notice, 48px mobile menu target, full-width mobile action, and visible focus outline.",
+      "Do use authored SVG controls and locally served assets."
     ],
     "donts": [
-      "Don't reproduce Jamie's personal portfolio navigation or make Jamie the masthead.",
-      "Don't use historical red as the primary contemporary action color.",
-      "Don't present equal-sized icon cards as the page's structural grammar.",
-      "Don't let ordinary successor containers cast shadows.",
-      "Don't promote Materialize colors, inline shadows, pill radii, or other 2016 archive exceptions into contemporary tokens.",
-      "Don't decorate the surface with gradients, glass, generic civic seals, or faux-government motifs.",
-      "Don't use external font or icon stylesheets."
+      "Don't restore the blue/serif public-record-room successor system or use Open Letter A/B/C comps as governing references.",
+      "Don't place an open letter, hero campaign, evidence docket, or explanatory landing page before the explorer.",
+      "Don't present historical rankings, officeholders, categories, or annualized values as current.",
+      "Don't ask for raw or identifiable constituent case files.",
+      "Don't replace Materialize coral and teal with Broadway blue, ochre, editorial ink/paper tokens, or a separate contemporary palette.",
+      "Don't introduce serif display type, Karla, Oswald, gradients, glass, faux-government motifs, or generic civic seals.",
+      "Don't flatten ranking cards, convert them into an editorial list, or promote the compact notice into a second product surface."
     ]
   }
 }

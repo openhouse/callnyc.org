@@ -64,7 +64,7 @@ limitations under the License.
       foreach($lilCats as &$cat){
         ?>
           window.index.add({
-            href: '<?php echo archive_url('/' . $cat['topCatSlug'] . '/' . $cat['slug'] . '.html');?>',
+            href: '<?php echo artifact_url('/' . $cat['topCatSlug'] . '/' . $cat['slug'] . '.html');?>',
             title: '<?php echo $cat['name'];?>',
             body: '<?php echo $cat['name'];?>'
           });

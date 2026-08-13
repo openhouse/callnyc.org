@@ -1,13 +1,13 @@
 # CallNYC.org
 
-CallNYC.org is a contemporary steward of the reconstructed 2016 CallNYC project. The public root explains the present status of the constituent-services record, sends residents to current official help, and asks NYC Council and NYC OTI to restore a privacy-protected publication path from Council Connect to NYC Open Data. The historical application lives at `/archive/2016/`.
+CallNYC.org is a contemporary steward of the reconstructed 2016 CallNYC project. The public root is the original interactive artifact: a district-office constituent-services explorer built in a 24-hour sprint after the data was released. A compact preservation notice identifies its historical status, shows the preserved Politico New York coverage, routes residents to current Council contacts, and opens a prepared request for NYC Council and NYC OTI to restore a privacy-protected publication path from Council Connect to NYC Open Data.
 
 This repository preserves lineage from [`openhouse/CallNYC`](https://github.com/openhouse/CallNYC), branch `feature/archive-2026`. It is independent and unofficial.
 
 ## Public surfaces
 
-- `/` — contemporary archive-and-advocacy publication; no database dependency.
-- `/archive/2016/` — historical application backed by the reconstructed dataset.
+- `/` — original historical application with the compact contemporary preservation and action notice.
+- `/archive/2016/` — compatibility alias for the same application; newly rendered navigation stays on the original root-level routes.
 - `/health.php` — database-independent deployment health and revision response.
 - `docs/knowledge-bank/` — project-internal typed knowledge wiki; not automatically public.
 
@@ -25,7 +25,7 @@ This repository preserves lineage from [`openhouse/CallNYC`](https://github.com/
    docker compose up --build
    ```
 
-3. Open [http://localhost:8080](http://localhost:8080). The archive is at [http://localhost:8080/archive/2016/](http://localhost:8080/archive/2016/).
+3. Open [http://localhost:8080](http://localhost:8080). The preserved alias is also available at [http://localhost:8080/archive/2016/](http://localhost:8080/archive/2016/).
 
 The deterministic seed in `data/sample.csv` is loaded on first start. To seed it again:
 
@@ -38,11 +38,12 @@ docker compose exec web php bin/seed.php
 ```sh
 docker compose exec web php tests/run.php
 docker compose exec web php bin/validate-knowledge.php
+docker compose exec web php bin/eval-launch-b.php
 ```
 
 ## Archive safety
 
-Keep `CALLNYC_ARCHIVED=1`. It disables the historical `getCSV.php` mutation path. The successor intentionally does not attempt to ingest a current feed because none has been established.
+Keep `CALLNYC_ARCHIVED=1`. It disables the historical `getCSV.php` mutation path. This preservation release intentionally does not attempt to ingest a current feed because none has been established.
 
 ## Deployment
 
