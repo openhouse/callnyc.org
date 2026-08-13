@@ -98,6 +98,11 @@ async function inspectLaunchSurface(baseUrl) {
 
   const externalScriptHosts = matches(html, /<script\b[^>]*\bsrc=["'](https?:\/\/[^"']+)["']/gi)
     .map((match) => new URL(match[1]).host);
+  const claimIds = [...new Set(
+    matches(html, /\sdata-claim-id=["']([^"']+)["']/gi)
+      .flatMap((match) => match[1].split(/\s+/))
+      .filter(Boolean),
+  )];
   const categoryHeaders = matches(html, /<a\b[^>]*class=["'][^"']*collapsible-header[^"']*["'][^>]*>/gi)
     .map((match) => match[0]);
 
@@ -148,6 +153,7 @@ async function inspectLaunchSurface(baseUrl) {
       contentType: logo.contentType,
     },
     externalScriptHosts,
+    claimIds,
   };
 }
 

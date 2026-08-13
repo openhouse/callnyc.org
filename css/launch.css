@@ -46,14 +46,14 @@ ul.side-nav.fixed .collapsible-body li.active a {
 }
 
 .archive-status {
-  background: #fdeaeb;
-  border-bottom: 1px solid #f8c1c3;
-  color: rgba(0, 0, 0, 0.87);
+  background: #d9e4e9;
+  border-bottom: 1px solid #74c2e5;
+  color: #0b5f81;
   padding: 28px 0 22px;
 }
 
 .archive-status a:not(.btn) {
-  color: #a21318;
+  color: #0b5f81;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
@@ -68,7 +68,7 @@ ul.side-nav.fixed .collapsible-body li.active a {
 
 .archive-status h2,
 .archive-status h3 {
-  color: #8b1014;
+  color: #0b5f81;
   font-weight: 300;
   line-height: 1.2;
   margin-top: 0;
@@ -113,13 +113,13 @@ ul.side-nav.fixed .collapsible-body li.active a {
 }
 
 .politico-evidence span {
-  color: rgba(0, 0, 0, 0.71);
+  color: #0b5f81;
   display: block;
   line-height: 1.35;
 }
 
 .politico-evidence strong {
-  color: #8b1014;
+  color: #0b5f81;
   display: block;
   font-size: 0.85rem;
   letter-spacing: 0.03em;
@@ -128,14 +128,14 @@ ul.side-nav.fixed .collapsible-body li.active a {
 
 .politico-evidence small,
 .archive-status__action small {
-  color: rgba(139, 16, 20, 0.82);
+  color: #0b5f81;
   display: block;
   line-height: 1.4;
   margin-top: 5px;
 }
 
 .archive-status .restore-data-button {
-  background-color: #c62828 !important;
+  background-color: #0b5f81 !important;
   height: auto;
   line-height: 1.35;
   min-height: 44px;
@@ -146,7 +146,7 @@ ul.side-nav.fixed .collapsible-body li.active a {
 
 .archive-status .restore-data-button:hover,
 .archive-status .restore-data-button:focus {
-  background-color: #b71c1c !important;
+  background-color: #2f6f89 !important;
 }
 
 .archive-status a:focus,
@@ -173,19 +173,30 @@ ul.side-nav.fixed .collapsible-body li.active a {
   }
 
   .archive-status {
-    padding: 16px 0 14px;
+    padding: 12px 0 10px;
   }
 
   .archive-status h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+  }
+
+  .archive-status p {
+    line-height: 1.4;
   }
 
   .archive-status__evidence {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
 
   .archive-status__intro {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
+  }
+
+  .politico-evidence img {
+    flex-basis: 68px;
+    height: 88px;
+    width: 68px;
   }
 
   .restore-data-button {

@@ -1,10 +1,22 @@
+const { readFileSync } = require('node:fs');
+const { join } = require('node:path');
 const criteria = require('./launch-2026-08-13-A.json');
+const { auditFactGraph } = require('./lib/audit-fact-graph.cjs');
 const { inspectLaunchSurface } = require('./lib/inspect-launch-surface.cjs');
+
+const factLedger = JSON.parse(readFileSync(join(__dirname, 'facts', 'callnyc-copy-2026-08-13.json'), 'utf8'));
+const factGraph = JSON.parse(readFileSync(join(__dirname, '..', factLedger.graphPath), 'utf8'));
 
 const urlIndex = process.argv.indexOf('--url');
 const baseUrl = urlIndex >= 0 ? process.argv[urlIndex + 1] : (process.env.CALLNYC_BASE_URL || 'http://127.0.0.1:8080/');
 
 function score(surface) {
+  const factReport = auditFactGraph({
+    ledger: factLedger,
+    graph: factGraph,
+    renderedClaimIds: surface.claimIds,
+  });
+
   return {
     original_experience:
       surface.root.status === 200 &&
@@ -21,7 +33,9 @@ function score(surface) {
     archive_clarity:
       /archiv/i.test(surface.archiveText) &&
       /2016/.test(surface.archiveText) &&
-      /no longer publish/i.test(surface.archiveText) &&
+      /Council Connect/i.test(surface.archiveText) &&
+      /historical/i.test(surface.archiveText) &&
+      /daily 311/i.test(surface.archiveText) &&
       surface.archiveRouteCount === 0 &&
       surface.firstCategory.hasArchiveFrame,
     politico_evidence:
@@ -35,9 +49,11 @@ function score(surface) {
       [...surface.advocacy.recipients].sort().join(',') ===
         ['data@council.nyc.gov', 'opendatateam@oti.nyc.gov'].sort().join(',') &&
       surface.advocacy.subject === 'Restore constituent services data publishing' &&
-      /CouncilStat/i.test(surface.advocacy.body) &&
+      /Council Connect/i.test(surface.advocacy.body) &&
       /NYC Open Data/i.test(surface.advocacy.body) &&
+      /311/i.test(surface.advocacy.body) &&
       /anonymized|privacy-protected/i.test(surface.advocacy.body),
+    fact_integrity: factReport.passed,
     self_contained_resilience:
       surface.externalScriptHosts.length === 0 &&
       surface.logo.tagName.toLowerCase() === 'img' &&

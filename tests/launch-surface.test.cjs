@@ -26,9 +26,23 @@ test('the preserved browse, rank, and drill-down experience still works', () => 
 test('the contemporary context is a compact frame on the original one-page surface', () => {
   assert.match(surface.archiveText, /archiv/i);
   assert.match(surface.archiveText, /2016/);
-  assert.match(surface.archiveText, /no longer publish/i);
+  assert.match(surface.archiveText, /Council Connect/i);
+  assert.match(surface.archiveText, /historical/i);
+  assert.match(surface.archiveText, /daily 311/i);
+  const archiveWordCount = surface.archiveText.split(/\s+/).filter(Boolean).length;
+  assert.ok(archiveWordCount <= 120, `archival band should stay compact; found ${archiveWordCount} words`);
   assert.equal(surface.archiveRouteCount, 0);
   assert.equal(surface.firstCategory.hasArchiveFrame, true);
+});
+
+test('every material archival assertion is connected to the fact-check graph', () => {
+  assert.deepEqual(
+    [...surface.claimIds].sort(),
+    [
+      'claim.callnyc-archival-origin',
+      'claim.council-connect-publication-gap',
+    ].sort(),
+  );
 });
 
 test('the Politico evidence is a real thumbnail linked to the preserved article', () => {
@@ -50,8 +64,9 @@ test('the advocacy control prepares a reviewable email to both responsible publi
     ['data@council.nyc.gov', 'opendatateam@oti.nyc.gov'].sort(),
   );
   assert.equal(surface.advocacy.subject, 'Restore constituent services data publishing');
-  assert.match(surface.advocacy.body, /CouncilStat/i);
+  assert.match(surface.advocacy.body, /Council Connect/i);
   assert.match(surface.advocacy.body, /NYC Open Data/i);
+  assert.match(surface.advocacy.body, /311/i);
   assert.match(surface.advocacy.body, /anonymized|privacy-protected/i);
   assert.match(surface.advocacy.label, /restore constituent services data publishing/i);
 });

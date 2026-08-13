@@ -51,12 +51,17 @@ With the Docker stack running at `http://localhost:8080`:
 ```sh
 npm test
 npm run eval -- --url http://127.0.0.1:8080/
+npm run eval:facts -- --url http://127.0.0.1:8080/
 ```
 
 The tests exercise the rendered PHP application, one category route, the Politico PDF
 and thumbnail, the visitor-controlled advocacy email, historical-contact safety, and
-self-contained presentation assets. The weighted launch rubric lives in
-`evals/launch-2026-08-13-A.json`.
+self-contained presentation assets. They also bind every material present-day claim
+to the project Knowledge Wiki, require public evidence for public copy, keep the
+Council Connect absence finding dated and bounded, and prevent private graph material
+from becoming public evidence. The weighted launch rubric lives in
+`evals/launch-2026-08-13-A.json`; the fact ledger lives in
+`evals/facts/callnyc-copy-2026-08-13.json`.
 
 ## Dokku deploy checklist
 

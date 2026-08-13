@@ -4,7 +4,7 @@
   "criteria": [
     {
       "id": "original_experience",
-      "weight": 30,
+      "weight": 25,
       "description": "The original browse, rank, card, and category drill-down experience remains operable."
     },
     {
@@ -24,8 +24,13 @@
     },
     {
       "id": "advocacy_action",
-      "weight": 20,
+      "weight": 15,
       "description": "A visitor-controlled email asks the Council Data Team and NYC Open Data Team to restore privacy-protected publishing."
+    },
+    {
+      "id": "fact_integrity",
+      "weight": 10,
+      "description": "Every rendered present-day claim is linked to public evidence, while absence findings remain dated, bounded, and separate from private discovery material."
     },
     {
       "id": "self_contained_resilience",

@@ -42,7 +42,7 @@ limitations under the License.
   $baseUrl = base_url();
   $advocacyRecipients = 'data@council.nyc.gov,opendatateam@oti.nyc.gov';
   $advocacySubject = 'Restore constituent services data publishing';
-  $advocacyBody = "Hello NYC Council Data Team and NYC Open Data Team,\n\nPlease restore publication of anonymized constituent services data from CouncilStat to the NYC Open Data Portal.\n\nThis privacy-protected public dataset once helped New Yorkers understand the services Council offices provide and supported civic tools such as CallNYC.org. Restoring a documented, regularly updated feed would renew public transparency into this essential work.\n\nThank you.";
+  $advocacyBody = "Hello NYC Council Data Team and NYC Open Data Team,\n\nPlease establish a privacy-protected public data connection from Council Connect to the NYC Open Data Portal.\n\nNYC Open Data preserves Council casework from 2015 through early 2025 as historical data, while a current Council posting describes Council Connect as the Council-wide constituent service database. By comparison, NYC publishes 311 service requests as a daily, current dataset.\n\nPlease publish a documented, regularly updated aggregate or de-identified Council Connect feed so New Yorkers can understand the services Council offices provide without exposing constituent case details.\n\nThank you.";
   $advocacyMailto = 'mailto:' . $advocacyRecipients
     . '?subject=' . rawurlencode($advocacySubject)
     . '&body=' . rawurlencode($advocacyBody);
@@ -355,11 +355,11 @@ limitations under the License.
           <div class="row archive-status__row">
             <div class="col s12 l5 archive-status__intro">
               <h2 id="archive-status-title">CallNYC is a 2016 civic-data archive</h2>
-              <p>
-                <a href="https://jamieburk.art" target="_blank" rel="noopener noreferrer">Jamie Burkart</a> built this project in a 24-hour sprint after NYC Council first released daily, anonymized CouncilStat casework data. The interface below preserves that original experiment.
+              <p data-claim-id="claim.callnyc-archival-origin">
+                <a href="https://jamieburk.art" target="_blank" rel="noopener noreferrer">Jamie Burkart</a> built CallNYC in a 24-hour sprint from NYC Council’s daily, anonymized CouncilStat data. This preserves the experiment.
               </p>
-              <p class="archive-status__limit">
-                NYC Council no longer publishes this constituent-services data. The rankings and phone-era context below are historical, not current.
+              <p class="archive-status__limit" data-claim-id="claim.council-connect-publication-gap">
+                NYC Open Data labels <a href="https://data.cityofnewyork.us/d/b9km-gdpy" target="_blank" rel="noopener noreferrer">Council casework through early 2025</a> as historical. A <a href="https://council.nyc.gov/amanda-farias/join-our-team-constituent-liaison/" target="_blank" rel="noopener noreferrer">2026 Council posting</a> names Council Connect as its Council-wide constituent-service database; our Aug. 13, 2026 catalog check found no current export comparable to NYC’s <a href="https://data.cityofnewyork.us/d/erm2-nwe9" target="_blank" rel="noopener noreferrer">daily 311 feed</a>. Rankings are historical.
               </p>
             </div>
 
@@ -375,12 +375,12 @@ limitations under the License.
             </div>
 
             <div class="col s12 m6 l4 archive-status__action">
-              <h3>Restore the public connection</h3>
-              <p>Tell NYC Council and the NYC Open Data Team to reconnect CouncilStat to the Open Data Portal.</p>
+              <h3>Restore current public data</h3>
+              <p data-claim-id="claim.council-connect-publication-gap">Ask NYC Council and NYC Open Data for a documented, privacy-protected Council Connect feed.</p>
               <a class="btn waves-effect waves-light red lighten-2 restore-data-button" data-testid="restore-data-email" href="<?php echo htmlspecialchars($advocacyMailto, ENT_QUOTES, 'UTF-8'); ?>">
                 Restore constituent services data publishing
               </a>
-              <small>Your email app will open a draft for you to review and send.</small>
+              <small>Opens a draft for your review.</small>
             </div>
           </div>
         </div>
@@ -515,8 +515,8 @@ limitations under the License.
           <div class="col l8 s12">
             <h5 class="white-text">Powered by 2016 NYC Council Constituent Services Data</h5>
             <p class="grey-text text-lighten-4">This is an archived, unofficial project. Its Council-member roster, rankings, and case counts describe a historical release and should not be read as current constituent-service information.</p>
-            <p class="grey-text text-lighten-4">In 2016, New York City Council began publishing anonymized daily records from CouncilStat. CallNYC used that data to make the assistance provided by district offices easier to discover.</p>
-            <p class="grey-text text-lighten-4">Council offices still perform constituent services, but the data is no longer published to the NYC Open Data Portal. Until that public connection is restored, there can be no present-tense CallNYC.</p>
+            <p class="grey-text text-lighten-4" data-claim-id="claim.callnyc-archival-origin">In 2016, New York City Council began publishing anonymized daily records from CouncilStat. CallNYC used that data to make the assistance provided by district offices easier to discover.</p>
+            <p class="grey-text text-lighten-4" data-claim-id="claim.council-connect-publication-gap">NYC Open Data now preserves Council casework from 2015 through early 2025 as historical data. Council Connect is the current Council-wide casework database named in a 2026 Council posting, but our Aug. 13, 2026 catalog check found no current Council Connect export. Until a regularly updated public feed exists, there can be no present-tense CallNYC.</p>
             <a class="btn waves-effect waves-light red lighten-3" target="_blank" rel="noopener noreferrer" href="https://web.archive.org/web/20170710152429/https://labs.council.nyc/districts/data/">Explore the archived data page</a>
 
           </div>

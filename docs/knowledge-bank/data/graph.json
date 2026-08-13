@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "nodes": [
+    { "id": "source.nyc-council-councilstat-2016", "kind": "source" },
+    { "id": "source.nyc-open-data-council-casework-2015-2025", "kind": "source" },
+    { "id": "source.nyc-council-council-connect-2026", "kind": "source" },
+    { "id": "source.nyc-open-data-council-connect-catalog-search", "kind": "source" },
+    { "id": "source.nyc-open-data-311-current", "kind": "source" },
+    { "id": "source.politico-callnyc-2016", "kind": "source" },
+    { "id": "claim.callnyc-archival-origin", "kind": "claim" },
+    { "id": "claim.council-connect-publication-gap", "kind": "claim" },
+    { "id": "question.councilstat-council-connect-transition", "kind": "question" }
+  ],
+  "edges": [
+    { "from": "claim.callnyc-archival-origin", "to": "source.nyc-council-councilstat-2016", "type": "supported_by" },
+    { "from": "claim.callnyc-archival-origin", "to": "source.politico-callnyc-2016", "type": "supported_by" },
+    { "from": "claim.council-connect-publication-gap", "to": "source.nyc-open-data-council-casework-2015-2025", "type": "supported_by" },
+    { "from": "claim.council-connect-publication-gap", "to": "source.nyc-council-council-connect-2026", "type": "supported_by" },
+    { "from": "claim.council-connect-publication-gap", "to": "source.nyc-open-data-council-connect-catalog-search", "type": "supported_by" },
+    { "from": "claim.council-connect-publication-gap", "to": "source.nyc-open-data-311-current", "type": "contrasted_with" },
+    { "from": "question.councilstat-council-connect-transition", "to": "claim.council-connect-publication-gap", "type": "opened_by" }
+  ]
+}
